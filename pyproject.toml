@@ -1,0 +1,22 @@
+[project]
+name = "google-cloud-gemini4-periodic-lab"
+version = "0.1.0"
+description = "Empirical Benchmarking Lab & Pareto Element Router for Google Cloud Gemini 4 (Hydrogen, Argon, Carbon)"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "google-genai>=2.34.0",
+    "pydantic>=2.10.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.3.0",
+    "matplotlib>=3.9.0",
+    "pillow>=11.0.0",
+    "numpy>=2.0.0",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
