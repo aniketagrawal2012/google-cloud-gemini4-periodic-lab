@@ -45,7 +45,7 @@ def test_contract_validator_catches_all_http_400_traps() -> None:
     assert not r4.valid and any("Office" in e for e in r4.errors)
 
     r5 = validate_gemini4_request("gemini-4-hydrogen", thinking_level="XHIGH", temperature=0.0)
-    assert r5.valid and len(r5.warnings) == 1 and "silently ignored" in r5.warnings[0]
+    assert r5.valid and len(r5.warnings) == 1 and "Managed sampling note" in r5.warnings[0]
 
 
 def test_periodic_router_pareto_selection() -> None:
@@ -66,21 +66,21 @@ def test_periodic_router_pareto_selection() -> None:
     assert d_regional.model == "gemini-4-argon" and d_regional.thinking_level == "MEDIUM"
 
 
-def test_argon_carbon_low_zero_thought_cliff_warning() -> None:
+def test_argon_carbon_low_direct_answer_note() -> None:
     r_c = validate_gemini4_request("gemini-4-carbon", thinking_level="LOW")
-    assert r_c.valid and any("Zero-thought accuracy cliff" in w for w in r_c.warnings)
+    assert r_c.valid and any("Direct-answer LOW mode note" in w for w in r_c.warnings)
     r_h = validate_gemini4_request("gemini-4-hydrogen", thinking_level="LOW")
-    assert r_h.valid and not any("Zero-thought accuracy cliff" in w for w in r_h.warnings)
+    assert r_h.valid and not any("Direct-answer LOW mode note" in w for w in r_h.warnings)
 
 
-def test_implicit_cache_prefix_sabotage_detection() -> None:
+def test_implicit_cache_prefix_hygiene_detection() -> None:
     stable_corpus = " ".join(["architecture policy governance"] * 1200)
     clean = audit_implicit_cache_prefix(stable_corpus)
     assert clean["meets_4096_cliff"] is True
     assert clean["cache_eligible"] is True
 
-    sabotaged = "REQUEST_TS=2026-11-14T00:45:00Z\n" + stable_corpus
-    bad = audit_implicit_cache_prefix(sabotaged)
+    dynamic_header = "REQUEST_TS=2026-11-14T00:45:00Z\n" + stable_corpus
+    bad = audit_implicit_cache_prefix(dynamic_header)
     assert bad["cache_eligible"] is False
     assert len(bad["dynamic_header_violations"]) >= 1
 

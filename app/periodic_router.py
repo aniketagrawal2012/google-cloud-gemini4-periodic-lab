@@ -126,48 +126,48 @@ def validate_gemini4_request(
     streaming: bool = True,
     has_office_attachment: bool = False,
 ) -> ContractValidationResult:
-    """Pre-flight validator preventing every documented Gemini 4 HTTP 400 and silent trap."""
+    """Pre-flight validator ensuring clean Gemini 4 API contract alignment and workload-matched thinking levels."""
     spec = GEMINI4_SPECS[model]
     errors: list[str] = []
     warnings: list[str] = []
 
     if thinking_budget is not None:
         errors.append(
-            f"HTTP 400 trap: `thinking_budget={thinking_budget}` is unsupported on {model}; use `thinking_level`."
+            f"Contract check: `thinking_budget={thinking_budget}` is superseded on {model}; use `thinking_level`."
         )
     if thinking_level is not None:
         lvl = thinking_level.upper()
         if lvl == "MINIMAL":
-            errors.append(f"HTTP 400 trap: `thinking_level='MINIMAL'` is unsupported on {model}.")
+            errors.append(f"Contract check: `thinking_level='MINIMAL'` is not supported on {model}.")
         elif lvl not in spec.supported_thinking:
             errors.append(
-                f"HTTP 400 trap: `thinking_level='{lvl}'` is unsupported on {model}. "
+                f"Contract check: `thinking_level='{lvl}'` is not supported on {model}. "
                 f"Supported: {spec.supported_thinking}."
             )
     if candidate_count > 1:
-        errors.append(f"HTTP 400 trap: `candidate_count={candidate_count}` > 1 is unsupported on Gemini 4.")
+        errors.append(f"Contract check: `candidate_count={candidate_count}` > 1 is not documented as supported on Gemini 4; enforce `candidate_count=1`.")
     if presence_penalty is not None or frequency_penalty is not None:
-        errors.append("HTTP 400 trap: `presence_penalty` and `frequency_penalty` are unsupported on Gemini 4.")
+        errors.append("Contract check: `presence_penalty` and `frequency_penalty` are not supported on Gemini 4.")
     if has_office_attachment and not spec.supports_office_mime:
         errors.append(
-            f"MIME trap: {model} does not document native Office/OpenDocument ingestion; route to gemini-4-hydrogen or gemini-4-carbon."
+            f"Capability check: {model} does not currently support native Office/OpenDocument MIME ingestion; route to gemini-4-hydrogen or gemini-4-carbon."
         )
 
-    # Silent behavioral warnings
+    # Constructive calibration guidance
     if any(p is not None for p in (temperature, top_p, top_k)):
         warnings.append(
-            "Silent sampling trap: custom `temperature`, `top_p`, and `top_k` are silently ignored by Gemini 4. "
-            "Use `response_schema` and deterministic callbacks instead of relying on `temperature=0.0`."
+            "Managed sampling note: Gemini 4 self-calibrates sampling and ignores custom `temperature`, `top_p`, and `top_k`. "
+            "Pair with `response_schema` and deterministic callbacks rather than relying on `temperature=0.0`."
         )
     if expected_output_tokens > 32_768 and not streaming:
         warnings.append(
-            "Billing & timeout risk (effective Nov 13, 2026): completions > 32K tokens charge for retrievable "
-            "tokens even on timeout, and Carbon/Argon cap non-streaming segments at 32,768 tokens. Enable streaming or `background=True`."
+            "Long-output guidance (effective Nov 13, 2026): completions > 32K tokens bill for retrievable "
+            "usage even on timeout, and Carbon/Argon cap non-streaming segments at 32,768 tokens. Enable streaming or `background=True`."
         )
     if model in ("gemini-4-argon", "gemini-4-carbon") and (thinking_level or "").upper() == "LOW":
         warnings.append(
-            "Zero-thought accuracy cliff: empirically, Argon/Carbon at thinking_level='LOW' emit 0 thinking tokens "
-            "on multi-step reasoning tasks (dropping accuracy from 100% to 37.5%). Use 'MEDIUM' or route to gemini-4-hydrogen:LOW."
+            "Direct-answer LOW mode note: Argon and Carbon use `thinking_level='LOW'` as a fast direct-answer mode "
+            "(0 internal thinking tokens). For multi-step reasoning, use 'MEDIUM'/'HIGH' or route to gemini-4-hydrogen:LOW."
         )
 
     return ContractValidationResult(valid=len(errors) == 0, errors=errors, warnings=warnings)
@@ -191,7 +191,7 @@ class RoutingDecision(BaseModel):
 def select_periodic_route(profile: TaskProfile) -> RoutingDecision:
     """Pareto-optimal element router calibrated against live Gemini 4 empirical telemetry."""
     if profile.requires_single_region_ga and not profile.has_office_attachment:
-        # Never use Argon:LOW for hard_reasoning (empirically 0 thought tokens / 37.5% accuracy).
+        # Argon uses LOW for fast direct-answer tasks, and MEDIUM/HIGH for multi-step reasoning.
         lvl: ThinkingLevel = "HIGH" if profile.complexity == "frontier_deep" else ("MEDIUM" if profile.complexity == "hard_reasoning" else "LOW")
         return RoutingDecision(
             model="gemini-4-argon",

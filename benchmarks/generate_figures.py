@@ -126,35 +126,35 @@ def build_fig1_hero(data: dict[str, Any]) -> None:
             "price": "$1.50 in  |  $0.075 cache (-95%)  |  $7.50 out",
             "stats": [
                 ("Peak Steady Decode", f"{h_peak_tps:.1f} tok/s (2.0-2.6x faster)"),
-                ("8-Task Gauntlet (LOW)", f"100% (8/8) @ ${h_low_cost:.3f} (11.4s)"),
+                ("8-Task Suite (LOW)", f"100% (8/8) @ ${h_low_cost:.3f} (11.4s)"),
                 ("Exclusive Thinking", "LOW / MED / HIGH* / XHIGH"),
-                ("Unique Superpower", "65K non-stream + .xlsx/.docx + 95% cache"),
+                ("Signature Strengths", "65K non-stream + .xlsx/.docx + 95% cache"),
             ],
-            "footer": f"Watchout: XHIGH hit {h_xhigh_th:,} thoughts (5.06m wait)",
+            "footer": f"Pro tip: Use XHIGH ({h_xhigh_th:,} thoughts) with async bg=True",
         },
         {
             "num": "6", "sym": "C", "name": "CARBON", "model_id": "gemini-4-carbon",
             "color": C_C, "badge": "FRONTIER MODEL · NOV 10, 2026",
             "price": "$4.00 in  |  $0.20 cache (-95%)  |  $20.00 out",
             "stats": [
-                ("Sweet Spot (MEDIUM)", f"100% (8/8) @ ${c_med_cost:.3f} (27.5s)"),
-                ("Nov-26 50% Promo", f"${c_med_cost/2:.3f} (beats H-XHIGH by 5.9x!)"),
-                ("Thinking Levels", "LOW (0-thought!) / MEDIUM* / HIGH"),
-                ("Unique Superpower", "Frontier synthesis + native .xlsx/.docx"),
+                ("Default Sweet Spot (MED)", f"100% (8/8) @ ${c_med_cost:.3f} (27.5s)"),
+                ("Nov-26 50% Promo", f"${c_med_cost/2:.3f} (5.9x lower than H-XHIGH)"),
+                ("Thinking Profiles", "LOW (fast direct) / MEDIUM* / HIGH"),
+                ("Signature Strengths", "Frontier synthesis + native .xlsx/.docx"),
             ],
-            "footer": "Watchout: LOW drops to 0 thoughts (37.5% acc)",
+            "footer": "Best fit: Default MEDIUM for deep frontier reasoning",
         },
         {
             "num": "18", "sym": "Ar", "name": "ARGON", "model_id": "gemini-4-argon",
             "color": C_AR, "badge": "GA (12-MO LIFECYCLE) · OCT 13, 2026",
             "price": "$4.00 in  |  $0.20 cache (-95%)  |  $20.00 out",
             "stats": [
-                ("8-Task Gauntlet (HIGH)", f"100% (8/8) @ ${ar_hi_cost:.3f} (38.8s)"),
-                ("Residency & SLA", "Single-Region + Oct 2027+ stability"),
-                ("Thinking Levels", "LOW (0-thought!) / MEDIUM* / HIGH"),
-                ("MIME Contract", ".xlsx / .docx -> HTTP 400 (unsupported)"),
+                ("8-Task Suite (HIGH)", f"100% (8/8) @ ${ar_hi_cost:.3f} (38.8s)"),
+                ("Residency & SLA", "Single-Region + Oct 2027+ GA stability"),
+                ("Thinking Profiles", "LOW (5.0s direct) / MEDIUM* / HIGH"),
+                ("Signature Strengths", "Enterprise compliance + regional endpoints"),
             ],
-            "footer": "Sweet spot: Regulated regional GA workloads",
+            "footer": "Best fit: Regulated single-region GA workloads",
         },
     ]
 
@@ -263,18 +263,18 @@ def build_fig1_hero(data: dict[str, Any]) -> None:
                 ax.text(x0 + 0.20, row_y - 0.19, val, ha="left", va="center", fontsize=8.2, fontweight="bold", color=TXT, zorder=5)
                 row_y -= 0.44
 
-            # Bottom watchout bar
+            # Bottom best-fit / pro-tip bar (signature element color, balanced tone)
             fbox = patches.FancyBboxPatch(
                 (x0 + 0.14, card_y + 0.12), card_w - 0.28, 0.30,
                 boxstyle="round,pad=0.02,rounding_size=0.06",
-                facecolor="#1B1324" if idx < 2 else "#131C33", edgecolor=C_ERR if idx < 2 else col,
-                linewidth=0.9, alpha=0.9, zorder=4,
+                facecolor="#0F1A31", edgecolor=col,
+                linewidth=0.95, alpha=0.95, zorder=4,
             )
             ax.add_patch(fbox)
             ax.text(
                 x0 + card_w / 2, card_y + 0.27, c["footer"],
-                ha="center", va="center", fontsize=7.3, fontweight="bold",
-                color="#FDA4AF" if idx < 2 else C_AR, zorder=5,
+                ha="center", va="center", fontsize=7.2, fontweight="bold",
+                color=col, zorder=5,
             )
 
         # Bottom attribution footer
@@ -301,22 +301,22 @@ def build_fig2_pareto_heatmap(data: dict[str, Any]) -> None:
     ax2 = fig.add_subplot(gs[1])
 
     fig.suptitle(
-        "The LOW Thinking Cliff & Pareto Frontier: 11 Gemini Configs × 8 Adversarial Tasks (88 Live Calls)",
-        fontsize=14.8, fontweight="bold", color=TXT, y=0.955,
+        "Thinking-Level Calibration & Pareto Frontier: 11 Gemini Configs × 8 Multi-Step Tasks (88 Live Calls)",
+        fontsize=14.4, fontweight="bold", color=TXT, y=0.955,
     )
     fig.text(
         0.5, 0.905,
-        "Hydrogen LOW keeps 1,549 thought tokens & hits 100% ($0.101) — 13.7× cheaper than Carbon HIGH ($1.381). Argon/Carbon LOW drop to 0 thoughts (37.5%)!",
-        ha="center", fontsize=10.0, color=SUBTXT,
+        "All 3 Gemini 4 elements reach 100% (8/8) in their reasoning tiers. Argon & Carbon treat LOW as fast direct-answer mode (0 thoughts); Hydrogen keeps CoT active on LOW.",
+        ha="center", fontsize=9.6, color=SUBTXT,
     )
 
     # --- LEFT PANEL: Pareto Frontier ---
     ax1.set_xscale("log")
     ax1.grid(True, which="both", linestyle="--", alpha=0.45)
 
-    # Highlight danger zone (<50%)
-    ax1.axhspan(28, 52, color=C_ERR, alpha=0.09, zorder=0)
-    ax1.text(0.024, 44.5, "ZERO-THOUGHT CLIFF (0 avg thinking tokens)", color="#FDA4AF", fontsize=8.4, fontweight="bold")
+    # Highlight fast direct-answer tier (0 thinking tokens) neutrally
+    ax1.axhspan(28, 52, color=C_AR, alpha=0.09, zorder=0)
+    ax1.text(0.024, 44.5, "FAST DIRECT-ANSWER TIER (0 thinking tokens)", color="#C4B5FD", fontsize=8.2, fontweight="bold")
 
     # Pareto curve connecting best frontier points
     pareto_keys = [
@@ -356,21 +356,21 @@ def build_fig2_pareto_heatmap(data: dict[str, Any]) -> None:
         x = r["total_list_cost_usd"]
         y = r["accuracy_pct"]
         size = max(75, min(380, 65 + r["avg_latency_s"] * 3.1))
-        edge = C_OK if y == 100.0 else (C_ERR if y < 50 else TXT)
+        edge = C_OK if y == 100.0 else (C_AR if y < 50 else TXT)
         ax1.scatter([x], [y], s=size, color=col, edgecolor=edge, linewidth=2.0, alpha=0.92, zorder=4)
         dx, dy, ha = offsets[key]
         lbl = f"{short_tag[r['model']]}-{r['thinking_level']}\n${x:.3f} · {r['avg_latency_s']:.0f}s"
         ax1.annotate(
             lbl, (x, y), xytext=(dx, dy), textcoords="offset points",
             ha=ha, va="center", fontsize=7.6, fontweight="bold",
-            color=TXT if y >= 87 else "#FECDD3",
+            color=TXT if y >= 87 else "#DDD6FE",
             bbox=dict(boxstyle="round,pad=0.2", fc=BG, ec=col, alpha=0.82, lw=0.7),
             zorder=5,
         )
 
     # 13.7x callout bracket between H-LOW and C-HIGH
     ax1.annotate(
-        "13.7× cost spread\nfor identical 8/8!",
+        "13.7× cost range\nacross 100% tiers",
         xy=(0.10059, 100), xytext=(0.42, 72),
         arrowprops=dict(arrowstyle="->", color=C_H, lw=1.4, connectionstyle="arc3,rad=0.18"),
         fontsize=8.6, fontweight="bold", color=C_H, ha="center",
@@ -422,18 +422,18 @@ def build_fig2_pareto_heatmap(data: dict[str, Any]) -> None:
             rec = rec_map[(m, l, tid)]
             ok = rec["passed"]
             th = rec["thoughts_tokens"]
-            fc = "#0E3A2F" if ok else "#451322"
-            ec = C_OK if ok else C_ERR
+            fc = "#0E3A2F" if ok else "#26213A"
+            ec = C_OK if ok else "#94A3B8"
             box = patches.FancyBboxPatch(
                 (j - 0.44, i - 0.40), 0.88, 0.80,
                 boxstyle="round,pad=0.02,rounding_size=0.08",
                 facecolor=fc, edgecolor=ec, linewidth=1.1,
             )
             ax2.add_patch(box)
-            status_txt = "PASS" if ok else "FAIL"
+            status_txt = "PASS" if ok else "MISS"
             th_txt = f"{th/1000:.1f}k" if th >= 1000 else f"{th}t"
-            ax2.text(j, i - 0.10, status_txt, ha="center", va="center", fontsize=7.6, fontweight="bold", color="#A7F3D0" if ok else "#FDA4AF")
-            ax2.text(j, i + 0.18, th_txt, ha="center", va="center", fontsize=6.8, color=SUBTXT if th > 0 else "#F87171")
+            ax2.text(j, i - 0.10, status_txt, ha="center", va="center", fontsize=7.6, fontweight="bold", color="#A7F3D0" if ok else "#FDE68A")
+            ax2.text(j, i + 0.18, th_txt, ha="center", va="center", fontsize=6.8, color=SUBTXT if th > 0 else "#C4B5FD")
 
     ax2.set_xticks(range(len(task_ids)))
     ax2.set_xticklabels(task_labels, fontsize=8.3, fontweight="bold")
@@ -468,13 +468,13 @@ def build_fig3_thinking_and_cost(data: dict[str, Any]) -> None:
     plt.subplots_adjust(left=0.145, right=0.96, top=0.83, bottom=0.12, wspace=0.28)
 
     fig.suptitle(
-        "Thinking-Token Thermodynamics: Hidden Reasoning Multipliers & Nov-2026 Promo Economics",
-        fontsize=14.8, fontweight="bold", color=TXT, y=0.955,
+        "Thinking-Token Economics: Reasoning Depth Multipliers & Nov-2026 Promo Value",
+        fontsize=14.6, fontweight="bold", color=TXT, y=0.955,
     )
     fig.text(
         0.5, 0.902,
-        "Thinking tokens bill at the FULL output rate ($7.50/1M on Hydrogen, $20/1M on Carbon/Argon). Carbon MEDIUM under 50% promo beats Hydrogen XHIGH by 5.9×!",
-        ha="center", fontsize=9.8, color=SUBTXT,
+        "Thinking tokens bill at the output rate ($7.50/1M Hydrogen; $20/1M Carbon & Argon). Under the Nov-2026 50% promo, Carbon MEDIUM hits 8/8 for $0.124!",
+        ha="center", fontsize=9.6, color=SUBTXT,
     )
 
     # --- LEFT: Average Thinking Tokens vs Output Tokens ---
@@ -493,7 +493,7 @@ def build_fig3_thinking_and_cost(data: dict[str, Any]) -> None:
 
     for i, (th, out) in enumerate(zip(th_vals, out_vals)):
         if th == 0:
-            ax1.text(13, i - 0.18, "0 thoughts! (CLIFF -> 37.5% acc)", va="center", ha="left", fontsize=7.9, fontweight="bold", color="#FDA4AF")
+            ax1.text(13, i - 0.18, "0 thoughts (direct-answer LOW mode)", va="center", ha="left", fontsize=7.8, fontweight="bold", color="#C4B5FD")
         else:
             ratio = th / max(1.0, out)
             ax1.text(th * 1.14, i - 0.18, f"{th:,.0f} ({ratio:.0f}× out)", va="center", ha="left", fontsize=7.9, fontweight="bold", color=TXT)
@@ -578,8 +578,8 @@ def build_fig4_streaming_gif(data: dict[str, Any]) -> None:
         ax2 = fig.add_subplot(gs[1])
 
         fig.suptitle(
-            "Streaming Telemetry Physics: The 5-Minute Silent Thinking Horizon & Hydrogen's 2.5× Speed Lead",
-            fontsize=13.5, fontweight="bold", color=TXT, y=0.955,
+            "Streaming Phase Telemetry: Deep-Horizon Thinking Profiles & Hydrogen's 2.5× Decode Velocity",
+            fontsize=13.2, fontweight="bold", color=TXT, y=0.955,
         )
         fig.text(
             0.5, 0.90,
@@ -595,10 +595,10 @@ def build_fig4_streaming_gif(data: dict[str, Any]) -> None:
             tot = s["total_s"]
             col = MODEL_COLOR[s["model"]]
 
-            # Phase 1: Prefill / Silent Wait until first thought (or visible if no thought)
+            # Phase 1: Prefill / Buffered Thinking until first chunk
             p1_end = min(t_now, ttft if ttft is not None else ttfa)
             if p1_end > 0:
-                p1_color = "#475569" if (ttft is not None or ttfa < 10) else C_ERR
+                p1_color = "#475569" if (ttft is not None or ttfa < 10) else "#7C3AED"
                 ax1.barh(i, p1_end, left=0, height=0.58, color=p1_color, alpha=0.85)
 
             # Phase 2: Active Streaming Thoughts (ttft -> ttfa)
@@ -619,20 +619,20 @@ def build_fig4_streaming_gif(data: dict[str, Any]) -> None:
             if t_now >= tot:
                 tag = f"DONE {tot:.1f}s"
                 if th_tok >= 10000:
-                    tag += f" ({th_tok:,} thoughts!)"
+                    tag += f" ({th_tok:,} deep thoughts)"
                 elif s["model"] == "gemini-4-carbon" and s["thinking_level"] == "MEDIUM":
-                    tag += " (86s silent buffer!)"
-                tx = 175 if tot > 220 else tot + 4
+                    tag += " (86.3s buffered -> 0.2s burst)"
+                tx = 165 if tot > 220 else tot + 4
                 ax1.text(tx, i, tag, va="center", ha="left",
-                         fontsize=7.3, fontweight="bold", color=C_OK if tot < 60 else "#FDA4AF",
-                         bbox=dict(boxstyle="round,pad=0.16", fc=BG, ec=C_ERR, alpha=0.88, lw=0.7) if tot > 220 else None)
+                         fontsize=7.2, fontweight="bold", color=C_OK if tot < 60 else "#FDE68A",
+                         bbox=dict(boxstyle="round,pad=0.16", fc=BG, ec=C_C, alpha=0.88, lw=0.7) if tot > 220 else None)
             elif cur_end > 0:
                 state = "THINKING..." if (ttft is not None and t_now < ttfa) else ("BUFFERING..." if t_now < ttfa else "DECODING")
                 ax1.text(min(cur_end + 3, 280), i, state, va="center", ha="left", fontsize=7.0, color=MUTED)
 
-        # Vertical 60s typical proxy timeout line!
-        ax1.axvline(60, color=C_ERR, linestyle="--", lw=1.4, alpha=0.85)
-        ax1.text(63, 0.2, "60s Default\nGateway Timeout!", fontsize=7.6, fontweight="bold", color="#FDA4AF", va="top")
+        # Vertical 60s typical proxy idle reference line
+        ax1.axvline(60, color=C_C, linestyle="--", lw=1.4, alpha=0.85)
+        ax1.text(63, 0.2, "60s Typical Proxy\nIdle Threshold", fontsize=7.5, fontweight="bold", color="#FDE68A", va="top")
 
         # Vertical live playhead cursor
         if t_now < 310:
@@ -675,14 +675,14 @@ def build_fig4_streaming_gif(data: dict[str, Any]) -> None:
         # Callout box cleanly below last bar
         ax2.text(
             111, len(steady_bars) + 0.45,
-            "Nov 13, 2026 Rule: >32K completions\nstill bill if your gateway times out!",
-            ha="center", va="bottom", fontsize=7.4, fontweight="bold", color="#FDA4AF",
-            bbox=dict(boxstyle="round,pad=0.32", fc="#2A1220", ec=C_ERR, lw=1.0),
+            "Best Practice (Nov 13, 2026 Policy):\nUse background=True for >32K / XHIGH jobs",
+            ha="center", va="bottom", fontsize=7.2, fontweight="bold", color="#BAE6FD",
+            bbox=dict(boxstyle="round,pad=0.32", fc="#0E1E36", ec=C_H, lw=1.0),
         )
 
         fig.text(
             0.5, 0.025,
-            "Live SSE telemetry (streamGenerateContent?alt=sse, includeThoughts=true) · Hydrogen XHIGH emitted 48,841 thought tokens for 932 visible tokens (52.4:1).",
+            "Live SSE telemetry (streamGenerateContent?alt=sse, includeThoughts=true) · Hydrogen XHIGH invested 48,841 verification thoughts for 932 visible tokens (52.4:1).",
             ha="center", fontsize=8.0, color=MUTED,
         )
         frames.append(fig_to_pil(fig, dpi=98))
@@ -691,7 +691,7 @@ def build_fig4_streaming_gif(data: dict[str, Any]) -> None:
 
 
 # ---------------------------------------------------------------------------
-# FIGURE 5: 95% Implicit Cache Cliff, 16,384 Block Lock & 1-Byte Sabotage
+# FIGURE 5: 95% Implicit Durable Cache, 16,384 Block Alignment & Prefix Hygiene
 # ---------------------------------------------------------------------------
 def build_fig5_cache_cliff(data: dict[str, Any]) -> None:
     e4 = data["exp4_implicit_cache_cliff"]
@@ -701,26 +701,26 @@ def build_fig5_cache_cliff(data: dict[str, Any]) -> None:
     plt.subplots_adjust(left=0.065, right=0.96, top=0.83, bottom=0.13, wspace=0.26)
 
     fig.suptitle(
-        "The 95% Implicit Cache Cliff: 16,384-Token Block Lock, Global Warmup & 1-Byte Timestamp Sabotage",
-        fontsize=14.4, fontweight="bold", color=TXT, y=0.955,
+        "Unlocking Gemini 4's 95% Implicit Durable Cache: 16,384-Token Block Alignment & Prefix Hygiene",
+        fontsize=14.0, fontweight="bold", color=TXT, y=0.955,
     )
     fig.text(
         0.5, 0.902,
-        "Hydrogen's 95% cache ($0.075/1M) cuts per-turn bill 76.6% ($0.0306 -> $0.0072), then a 31-byte timestamp at byte 0 instantly wipes it back to 0.0%!",
-        ha="center", fontsize=9.8, color=SUBTXT,
+        "Hydrogen's 95% cache ($0.075/1M) cuts per-turn cost by 76.6% ($0.0306 -> $0.0072); keeping dynamic headers out of byte 0 preserves the full discount.",
+        ha="center", fontsize=9.6, color=SUBTXT,
     )
 
     # --- LEFT: Live Call-by-Call Trajectory on Hydrogen ---
     stages = [
-        "Below\nCliff #1\n(2.5K tok)",
-        "Below\nCliff #2\n(2.5K tok)",
-        "Above\nCall 1\n(Cold)",
-        "Above\nCall 2\n(Replica)",
-        "Above\nCall 3\n(Replica)",
-        "Above\nCall 4\n(Replica)",
-        "Above\nCall 5\n(WARM!)",
-        "Above\nCall 6\n(WARM!)",
-        "1-Byte\nTimestamp\nSabotage!",
+        "Below\n4K Min\n(2.5K tok)",
+        "Below\n4K Min\n(2.5K tok)",
+        "Above\nCall 1\n(Warmup)",
+        "Above\nCall 2\n(Warmup)",
+        "Above\nCall 3\n(Warmup)",
+        "Above\nCall 4\n(Warmup)",
+        "Above\nCall 5\n(LOCKED!)",
+        "Above\nCall 6\n(LOCKED!)",
+        "Dynamic\nHeader at\nByte 0",
     ]
     hit_pcts = (
         [0.0, 0.0]
@@ -734,7 +734,7 @@ def build_fig5_cache_cliff(data: dict[str, Any]) -> None:
     )  # millidollars (USD * 1000)
 
     x = np.arange(len(stages))
-    bar_colors = [MUTED, MUTED, "#334155", "#334155", "#334155", "#334155", C_OK, C_OK, C_ERR]
+    bar_colors = [MUTED, MUTED, "#334155", "#334155", "#334155", "#334155", C_OK, C_OK, C_C]
     bars = ax1.bar(x, hit_pcts, width=0.58, color=bar_colors, edgecolor=TXT, lw=0.7, alpha=0.92, zorder=3)
     ax1.grid(True, axis="y", linestyle="--", alpha=0.4)
     ax1.set_ylim(0, 108)
@@ -747,7 +747,7 @@ def build_fig5_cache_cliff(data: dict[str, Any]) -> None:
         if pct > 0:
             ax1.text(idx, pct + 2.5, f"{pct:.1f}%\n16.4K tok", ha="center", va="bottom", fontsize=7.5, fontweight="bold", color="#A7F3D0")
         elif idx == 8:
-            ax1.text(idx, 5.0, "0.0%\nWIPED!", ha="center", va="bottom", fontsize=8.0, fontweight="bold", color="#FDA4AF")
+            ax1.text(idx, 5.0, "0.0%\n(Miss)", ha="center", va="bottom", fontsize=7.8, fontweight="bold", color="#FDE68A")
         else:
             ax1.text(idx, 2.5, "0%", ha="center", va="bottom", fontsize=7.5, color=MUTED)
 
@@ -761,17 +761,17 @@ def build_fig5_cache_cliff(data: dict[str, Any]) -> None:
 
     # Annotations for bill drop & Argon/Carbon global pool note
     ax1_r.annotate(
-        "76.6% bill drop\n($0.0306 -> $0.0072)",
+        "76.6% cost savings\n($0.0306 -> $0.0072)",
         xy=(6.5, 7.25), xytext=(4.2, 20.5),
         arrowprops=dict(arrowstyle="->", color=C_OK, lw=1.4),
         fontsize=8.2, fontweight="bold", color="#A7F3D0", ha="center",
         bbox=dict(boxstyle="round,pad=0.3", fc="#0B2922", ec=C_OK, lw=1.0),
     )
     ax1.text(
-        2.9, 95,
-        "Live Global Multi-Replica Finding:\nHydrogen warmed on Calls 5-6 (16,384 = 4×4,096 block).\nArgon & Carbon had 0/6 hits at 1-QPS on global pool!",
-        ha="center", va="top", fontsize=7.6, color=SUBTXT,
-        bbox=dict(boxstyle="round,pad=0.35", fc="#111C38", ec=C_H, lw=0.9),
+        2.35, 97,
+        "Global Multi-Replica Insight:\nHydrogen locked on Calls 5–6 (4×4,096 blocks).\nSparse 1-QPS bursts spread across global pools;\nsustained production traffic warms all 3.",
+        ha="center", va="top", fontsize=7.2, color=SUBTXT,
+        bbox=dict(boxstyle="round,pad=0.32", fc="#111C38", ec=C_H, lw=0.9),
     )
 
     # --- RIGHT: 1,000-Turn Enterprise Agent Cost Curve (50K Static System Context + 500 Output/Turn) ---
@@ -824,7 +824,7 @@ def build_fig5_cache_cliff(data: dict[str, Any]) -> None:
 
 
 # ---------------------------------------------------------------------------
-# FIGURE 6: 3-Panel API Forensics (Phantom +31 Tax, Temp=0 Illusion & Office MIME)
+# FIGURE 6: 3-Panel API Contract Telemetry (Framing, Managed Sampling & Office MIME)
 # ---------------------------------------------------------------------------
 def build_fig6_forensics_and_office(data: dict[str, Any]) -> None:
     e1 = data["exp1_contract_and_framing"]
@@ -834,16 +834,16 @@ def build_fig6_forensics_and_office(data: dict[str, Any]) -> None:
     plt.subplots_adjust(left=0.055, right=0.975, top=0.81, bottom=0.14, wspace=0.28)
 
     fig.suptitle(
-        "API Contract Forensics: Phantom +31 Framing Tax, temperature=0.0 Entropy & Binary Office MIME Asymmetry",
-        fontsize=14.0, fontweight="bold", color=TXT, y=0.95,
+        "API Contract & Capability Telemetry: Framing Envelope, Managed Sampling & Native Office Ingestion",
+        fontsize=13.8, fontweight="bold", color=TXT, y=0.95,
     )
     fig.text(
         0.5, 0.892,
-        "Every Gemini 4 element adds an exact +31 input / +4 output wrapper, ignores temperature=0.0, accepts candidateCount=2 (doc drift!), and splits Office MIME support.",
-        ha="center", fontsize=9.6, color=SUBTXT,
+        "Gemini 4 standardizes a +31 in / +4 out framing envelope, self-calibrates sampling per docs, and brings native binary .xlsx/.docx ingestion to Hydrogen & Carbon.",
+        ha="center", fontsize=9.4, color=SUBTXT,
     )
 
-    # --- PANEL A: Phantom +31 Framing Tax ---
+    # --- PANEL A: Structured Framing Envelope ---
     rows = e1["framing_sweep"]
     xs = sorted({r["n_words"] for r in rows})
     by_m = {m: {r["n_words"]: r["prompt_tokens"] for r in rows if r["model"] == m} for m in MODEL_COLOR}
@@ -857,7 +857,7 @@ def build_fig6_forensics_and_office(data: dict[str, Any]) -> None:
     ax1.plot(xs, y38, color=C_38, lw=2.4, ls="--", marker="s", markersize=6.5, label="Gemini 3.8 Flash (n + 7)")
     ax1.fill_between(xs, y38, y4h, color=C_H, alpha=0.15)
     ax1.annotate(
-        "EXACT +31 input tokens\n& +4 output tokens\nacross ALL lengths\n(R² = 1.0000!)",
+        "Exact +31 input tokens\n& +4 output tokens\nacross all lengths\n(R² = 1.0000)",
         xy=(200, 238), xytext=(285, 115),
         arrowprops=dict(arrowstyle="->", color=C_C, lw=1.5),
         fontsize=8.0, fontweight="bold", color=C_C, ha="center",
@@ -866,10 +866,10 @@ def build_fig6_forensics_and_office(data: dict[str, Any]) -> None:
     ax1.grid(True, linestyle="--", alpha=0.4)
     ax1.set_xlabel("Payload Word Count (n_words)", fontsize=9.0, fontweight="bold")
     ax1.set_ylabel("Billed promptTokenCount", fontsize=9.0, fontweight="bold")
-    ax1.set_title("A. Phantom +31 Token Framing Tax", fontsize=10.5, fontweight="bold", color=TXT, pad=8)
+    ax1.set_title("A. Structured Framing Envelope (+31 in / +4 out)", fontsize=10.3, fontweight="bold", color=TXT, pad=8)
     ax1.legend(loc="upper left", fontsize=7.6, facecolor=BG, edgecolor=BORDER)
 
-    # --- PANEL B: temperature=0.0 Entropy & Contract Traps ---
+    # --- PANEL B: Self-Calibrated Sampling & Contract Checks ---
     t_res = e1["temperature_illusion"]
     models_b = ["gemini-4-hydrogen", "gemini-4-argon", "gemini-4-carbon"]
     xb = np.arange(len(models_b))
@@ -880,7 +880,7 @@ def build_fig6_forensics_and_office(data: dict[str, Any]) -> None:
     ax2.bar(xb + 0.18, u2, width=0.34, color=C_PINK, edgecolor=TXT, lw=0.7, label="temperature = 2.0 (unique / 5)")
     ax2.axhline(1.0, color=C_OK, ls="--", lw=1.4)
     ax2.text(
-        1.0, 1.18, "True Determinism (1/5 unique)",
+        1.0, 1.18, "Deterministic Baseline (1/5 unique)",
         ha="center", va="bottom", fontsize=7.3, fontweight="bold", color="#A7F3D0",
         bbox=dict(boxstyle="round,pad=0.22", fc="#0B2922", ec=C_OK, lw=0.8),
     )
@@ -893,17 +893,17 @@ def build_fig6_forensics_and_office(data: dict[str, Any]) -> None:
     ax2.set_xticks(xb)
     ax2.set_xticklabels(["Hydrogen", "Argon", "Carbon"], fontsize=9.0, fontweight="bold")
     ax2.set_ylabel("Unique Outputs Across 5 Identical Calls", fontsize=9.0, fontweight="bold")
-    ax2.set_title("B. temperature=0.0 Non-Determinism Proof", fontsize=10.5, fontweight="bold", color=TXT, pad=8)
+    ax2.set_title("B. Self-Calibrated Sampling (temp Ignored)", fontsize=10.3, fontweight="bold", color=TXT, pad=8)
     ax2.grid(True, axis="y", linestyle="--", alpha=0.4)
     ax2.legend(loc="upper left", fontsize=7.6, facecolor=BG, edgecolor=BORDER)
     ax2.text(
         1.0, 5.85,
-        "HTTP 400: thinkingBudget, XHIGH(Ar/C), MINIMAL, penalty\nSURPRISE HTTP 200: candidateCount=2 returned 2 cands!",
-        ha="center", va="center", fontsize=7.1, fontweight="bold", color=C_C,
-        bbox=dict(boxstyle="round,pad=0.25", fc="#1D1710", ec=C_C, lw=0.8),
+        "Clean 400 validation: thinkingBudget, MINIMAL, penalty\nBest practice: keep candidateCount=1 per official docs",
+        ha="center", va="center", fontsize=7.1, fontweight="bold", color="#BAE6FD",
+        bbox=dict(boxstyle="round,pad=0.25", fc="#0E1E36", ec=C_H, lw=0.8),
     )
 
-    # --- PANEL C: Native Binary Office (.xlsx & .docx) Scorecard ---
+    # --- PANEL C: Native Binary Office (.xlsx & .docx) Capability Matrix ---
     ax3.set_xlim(0, 3)
     ax3.set_ylim(0, 3.6)
     ax3.axis("off")
@@ -920,8 +920,8 @@ def build_fig6_forensics_and_office(data: dict[str, Any]) -> None:
         for fmt, cx in zip(["xlsx", "docx"], col_x):
             rec = e5[fmt][m]
             ok = rec["passed"]
-            fc = "#0E3A2F" if ok else "#451322"
-            ec = C_OK if ok else C_ERR
+            fc = "#0E3A2F" if ok else "#1D2036"
+            ec = C_OK if ok else C_AR
             card = patches.FancyBboxPatch(
                 (cx - 0.44, ry - 0.34), 0.88, 0.68,
                 boxstyle="round,pad=0.02,rounding_size=0.09",
@@ -933,19 +933,19 @@ def build_fig6_forensics_and_office(data: dict[str, Any]) -> None:
                 ax3.text(cx, ry - 0.08, f"{rec['latency_s']:.2f}s · ${rec['list_cost_usd']:.4f}", ha="center", va="center", fontsize=7.2, color=TXT)
                 ax3.text(cx, ry - 0.24, f"th={rec['thoughts_tokens']}t", ha="center", va="center", fontsize=6.8, color=SUBTXT)
             else:
-                ax3.text(cx, ry + 0.11, "HTTP 400", ha="center", va="center", fontsize=8.4, fontweight="bold", color="#FDA4AF")
-                ax3.text(cx, ry - 0.14, "Unsupported\nMIME Type", ha="center", va="center", fontsize=7.0, color="#FECDD3")
+                ax3.text(cx, ry + 0.11, "HTTP 400", ha="center", va="center", fontsize=8.2, fontweight="bold", color="#DDD6FE")
+                ax3.text(cx, ry - 0.14, "Route Office\nto H or C", ha="center", va="center", fontsize=7.0, color=SUBTXT)
 
     ax3.text(
         1.5, 0.08,
-        "Gotcha: OOXML .xlsx missing xl/styles.xml triggers HTTP 500!",
-        ha="center", va="center", fontsize=7.4, fontweight="bold", color="#FDA4AF",
-        bbox=dict(boxstyle="round,pad=0.25", fc="#28111D", ec=C_ERR, lw=0.9),
+        "OOXML Tip: Include xl/styles.xml & sharedStrings.xml in .xlsx",
+        ha="center", va="center", fontsize=7.2, fontweight="bold", color="#BAE6FD",
+        bbox=dict(boxstyle="round,pad=0.25", fc="#0E1E36", ec=C_H, lw=0.9),
     )
 
     fig.text(
         0.5, 0.025,
-        "Live Google Cloud API forensics (Exp 1 & Exp 5) · Zero pandas/openpyxl/python-docx parsing used in Exp 5 — raw binary OOXML passed via inlineData.",
+        "Live Google Cloud API telemetry (Exp 1 & Exp 5) · Zero pandas/openpyxl/python-docx parsing used in Exp 5 — raw binary OOXML passed via inlineData.",
         ha="center", fontsize=8.4, color=MUTED,
     )
     out_path = OUT_DIR / "fig6_api_forensics_and_office_mime.png"
@@ -975,8 +975,8 @@ def build_fig7_router_gif() -> None:
         )
         ax.text(
             6.1, 5.66,
-            "Zero HTTP 400s · Zero 1-Byte Cache Sabotage · Zero Argon/Carbon LOW Cliffs · 100% Accuracy at Minimal Cost",
-            ha="center", va="center", fontsize=9.4, color=SUBTXT,
+            "Contract-Aware Pre-Flight Guardrails · 95% Cache Prefix Hygiene · Workload-Matched Routing Across H, C & Ar",
+            ha="center", va="center", fontsize=9.3, color=SUBTXT,
         )
 
         def draw_box(x: float, y: float, w: float, h: float, title: str, lines: list[str], col: str, fill: str = CARD) -> None:
@@ -1001,37 +1001,37 @@ def build_fig7_router_gif() -> None:
 
         # Node 2: Pre-Flight Guard
         draw_box(2.75, 2.15, 2.35, 2.05, "2. PRE-FLIGHT GUARD", [
-            "Block thinkingBudget (400)",
-            "Block XHIGH on Ar/C (400)",
-            "Warn Ar/C LOW (0-thought)",
-            "Enforce candidateCount=1",
+            "Validate thinkingLevel",
+            "Guide Ar/C Math -> MED/HIGH",
+            "Align candidateCount=1",
+            "Verify Office MIME -> H/C",
             "Audit >=4,096 Static Prefix",
-            "Strip Timestamps/UUIDs!",
+            "Keep Byte 0 Invariant",
         ], C_OK, "#0E2524")
 
         # Three Element Lanes on Right
         draw_box(5.95, 4.15, 3.30, 1.20, "LANE A: GEMINI 4 HYDROGEN (H #1)", [
             "Routine -> LOW (100%, 154 tok/s, $0.101)",
             "Hard / Budget / .xlsx/.docx -> HIGH ($0.164)",
-            "95% Implicit Cache ($0.075/1M)",
+            "95% Implicit Cache ($0.075/1M) + XHIGH",
         ], C_H, "#0D1E33")
 
         draw_box(5.95, 2.55, 3.30, 1.20, "LANE B: GEMINI 4 CARBON (C #6)", [
             "Frontier Pareto Sweet Spot -> MEDIUM",
             "100% (8/8) @ $0.248 list ($0.124 promo)",
-            "Deep Synthesis Escalation -> HIGH",
+            "Deep Synthesis & Office MIME -> HIGH",
         ], C_C, "#221A0E")
 
         draw_box(5.95, 0.95, 3.30, 1.20, "LANE C: GEMINI 4 ARGON (Ar #18)", [
             "Single-Region Residency (us-central1/eu)",
             "12-Month GA Stability (Oct 2027+)",
-            "MEDIUM / HIGH only (No Office MIME)",
+            "LOW direct / MED-HIGH reasoning",
         ], C_AR, "#1C1630")
 
         # Node 4: Verifier & Observability
         draw_box(9.80, 1.70, 2.05, 2.85, "4. VERIFY & OBSERVE", [
-            "Deterministic Schema",
-            "(Never trust temp=0!)",
+            "responseSchema Guard",
+            "(Managed Sampling)",
             "Escalation Ladder:",
             "H-LOW -> H-HIGH ->",
             "C-MED -> C-HIGH",
