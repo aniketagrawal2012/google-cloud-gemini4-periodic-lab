@@ -1,22 +1,37 @@
+[build-system]
+requires = ["setuptools>=68.0"]
+build-backend = "setuptools.build_meta"
+
 [project]
 name = "google-cloud-gemini4-periodic-lab"
-version = "0.1.0"
-description = "Empirical Benchmarking Lab & Pareto Element Router for Google Cloud Gemini 4 (Hydrogen, Argon, Carbon)"
+version = "2.0.0"
+description = "Empirically calibrated Periodic-Element Router, Cloud Run FastAPI Gateway, ADK callback, BigQuery FinOps DDL, and 220+ live GCP benchmarks for Gemini 4 Hydrogen, Carbon, and Argon."
 readme = "README.md"
+license = { text = "Apache-2.0" }
 requires-python = ">=3.11"
 dependencies = [
-    "google-genai>=2.34.0",
-    "pydantic>=2.10.0",
+    "pydantic>=2.7.0",
 ]
 
 [project.optional-dependencies]
+gateway = [
+    "fastapi>=0.115.0",
+    "uvicorn[standard]>=0.32.0",
+    "google-auth>=2.35.0",
+]
+gcp = [
+    "google-cloud-bigquery>=3.25.0",
+    "google-cloud-storage>=2.18.0",
+    "google-genai>=2.34.0",
+]
 dev = [
-    "pytest>=8.3.0",
-    "matplotlib>=3.9.0",
-    "pillow>=11.0.0",
-    "numpy>=2.0.0",
+    "pytest>=8.0.0",
+    "httpx>=0.27.0",
 ]
 
+[tool.setuptools.packages.find]
+include = ["app*"]
+
 [tool.pytest.ini_options]
-testpaths = ["tests"]
 pythonpath = ["."]
+testpaths = ["tests"]

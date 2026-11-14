@@ -1,0 +1,833 @@
+{
+  "run_timestamp_utc": "2026-11-14T10:33:24.324611+00:00",
+  "platform": "Google Cloud Gemini Enterprise Agent Platform + Cloud Storage + BigQuery",
+  "total_exp6_live_calls": 67,
+  "cumulative_suite_live_calls": 255,
+  "duration_s": 289.74,
+  "experiments": {
+    "exp6a_regional_residency": {
+      "total_calls": 37,
+      "matrix": {
+        "gemini-4-hydrogen": {
+          "global": {
+            "supported": true,
+            "http_status": 200,
+            "sample_count": 3,
+            "mean_latency_s": 1.785,
+            "median_latency_s": 1.809,
+            "min_latency_s": 1.524,
+            "accuracy_pct": 33.3,
+            "runs": [
+              {
+                "run": 1,
+                "http_status": 200,
+                "latency_s": 1.524,
+                "mentions_spanner": true,
+                "thoughts_tokens": 58,
+                "output_tokens": 18,
+                "list_cost_usd": 0.000646
+              },
+              {
+                "run": 2,
+                "http_status": 200,
+                "latency_s": 2.021,
+                "mentions_spanner": false,
+                "thoughts_tokens": 125,
+                "output_tokens": 3,
+                "list_cost_usd": 0.001036
+              },
+              {
+                "run": 3,
+                "http_status": 200,
+                "latency_s": 1.809,
+                "mentions_spanner": false,
+                "thoughts_tokens": 125,
+                "output_tokens": 3,
+                "list_cost_usd": 0.001036
+              }
+            ]
+          },
+          "us": {
+            "supported": true,
+            "http_status": 200,
+            "sample_count": 3,
+            "mean_latency_s": 1.903,
+            "median_latency_s": 1.829,
+            "min_latency_s": 1.738,
+            "accuracy_pct": 0.0,
+            "runs": [
+              {
+                "run": 1,
+                "http_status": 200,
+                "latency_s": 1.738,
+                "mentions_spanner": false,
+                "thoughts_tokens": 125,
+                "output_tokens": 3,
+                "list_cost_usd": 0.001036
+              },
+              {
+                "run": 2,
+                "http_status": 200,
+                "latency_s": 2.143,
+                "mentions_spanner": false,
+                "thoughts_tokens": 125,
+                "output_tokens": 3,
+                "list_cost_usd": 0.001036
+              },
+              {
+                "run": 3,
+                "http_status": 200,
+                "latency_s": 1.829,
+                "mentions_spanner": false,
+                "thoughts_tokens": 125,
+                "output_tokens": 3,
+                "list_cost_usd": 0.001036
+              }
+            ]
+          },
+          "eu": {
+            "supported": true,
+            "http_status": 200,
+            "sample_count": 3,
+            "mean_latency_s": 1.711,
+            "median_latency_s": 1.716,
+            "min_latency_s": 1.567,
+            "accuracy_pct": 33.3,
+            "runs": [
+              {
+                "run": 1,
+                "http_status": 200,
+                "latency_s": 1.85,
+                "mentions_spanner": false,
+                "thoughts_tokens": 125,
+                "output_tokens": 3,
+                "list_cost_usd": 0.001036
+              },
+              {
+                "run": 2,
+                "http_status": 200,
+                "latency_s": 1.567,
+                "mentions_spanner": true,
+                "thoughts_tokens": 57,
+                "output_tokens": 19,
+                "list_cost_usd": 0.000646
+              },
+              {
+                "run": 3,
+                "http_status": 200,
+                "latency_s": 1.716,
+                "mentions_spanner": false,
+                "thoughts_tokens": 122,
+                "output_tokens": 6,
+                "list_cost_usd": 0.001036
+              }
+            ]
+          },
+          "europe-west2": {
+            "supported": false,
+            "http_status": 404,
+            "sample_count": 1,
+            "mean_latency_s": null,
+            "median_latency_s": null,
+            "min_latency_s": null,
+            "accuracy_pct": null,
+            "runs": [
+              {
+                "run": 1,
+                "http_status": 404,
+                "latency_s": 2.451,
+                "error_summary": "Publisher model `projects/PROJECT_ID/locations/europe-west2/publishers/google/models/gemini-4-hydrogen` was not found or your project does not have access to it. Ensure you are using a valid model name and that the model is available in the s"
+              }
+            ]
+          },
+          "asia-southeast1": {
+            "supported": false,
+            "http_status": 404,
+            "sample_count": 1,
+            "mean_latency_s": null,
+            "median_latency_s": null,
+            "min_latency_s": null,
+            "accuracy_pct": null,
+            "runs": [
+              {
+                "run": 1,
+                "http_status": 404,
+                "latency_s": 0.554,
+                "error_summary": "Publisher model `projects/PROJECT_ID/locations/asia-southeast1/publishers/google/models/gemini-4-hydrogen` was not found or your project does not have access to it. Ensure you are using a valid model name and that the model is available in th"
+              }
+            ]
+          }
+        },
+        "gemini-4-carbon": {
+          "global": {
+            "supported": true,
+            "http_status": 200,
+            "sample_count": 3,
+            "mean_latency_s": 3.222,
+            "median_latency_s": 3.101,
+            "min_latency_s": 2.418,
+            "accuracy_pct": 100.0,
+            "runs": [
+              {
+                "run": 1,
+                "http_status": 200,
+                "latency_s": 2.418,
+                "mentions_spanner": true,
+                "thoughts_tokens": 0,
+                "output_tokens": 18,
+                "list_cost_usd": 0.000564
+              },
+              {
+                "run": 2,
+                "http_status": 200,
+                "latency_s": 4.147,
+                "mentions_spanner": true,
+                "thoughts_tokens": 0,
+                "output_tokens": 23,
+                "list_cost_usd": 0.000664
+              },
+              {
+                "run": 3,
+                "http_status": 200,
+                "latency_s": 3.101,
+                "mentions_spanner": true,
+                "thoughts_tokens": 0,
+                "output_tokens": 18,
+                "list_cost_usd": 0.000564
+              }
+            ]
+          },
+          "us": {
+            "supported": true,
+            "http_status": 200,
+            "sample_count": 3,
+            "mean_latency_s": 3.32,
+            "median_latency_s": 3.137,
+            "min_latency_s": 2.831,
+            "accuracy_pct": 100.0,
+            "runs": [
+              {
+                "run": 1,
+                "http_status": 200,
+                "latency_s": 3.137,
+                "mentions_spanner": true,
+                "thoughts_tokens": 0,
+                "output_tokens": 18,
+                "list_cost_usd": 0.000564
+              },
+              {
+                "run": 2,
+                "http_status": 200,
+                "latency_s": 2.831,
+                "mentions_spanner": true,
+                "thoughts_tokens": 0,
+                "output_tokens": 17,
+                "list_cost_usd": 0.000544
+              },
+              {
+                "run": 3,
+                "http_status": 200,
+                "latency_s": 3.993,
+                "mentions_spanner": true,
+                "thoughts_tokens": 0,
+                "output_tokens": 18,
+                "list_cost_usd": 0.000564
+              }
+            ]
+          },
+          "eu": {
+            "supported": true,
+            "http_status": 200,
+            "sample_count": 3,
+            "mean_latency_s": 3.973,
+            "median_latency_s": 3.765,
+            "min_latency_s": 3.736,
+            "accuracy_pct": 100.0,
+            "runs": [
+              {
+                "run": 1,
+                "http_status": 200,
+                "latency_s": 3.736,
+                "mentions_spanner": true,
+                "thoughts_tokens": 0,
+                "output_tokens": 20,
+                "list_cost_usd": 0.000604
+              },
+              {
+                "run": 2,
+                "http_status": 200,
+                "latency_s": 3.765,
+                "mentions_spanner": true,
+                "thoughts_tokens": 0,
+                "output_tokens": 18,
+                "list_cost_usd": 0.000564
+              },
+              {
+                "run": 3,
+                "http_status": 200,
+                "latency_s": 4.419,
+                "mentions_spanner": true,
+                "thoughts_tokens": 0,
+                "output_tokens": 18,
+                "list_cost_usd": 0.000564
+              }
+            ]
+          },
+          "europe-west2": {
+            "supported": false,
+            "http_status": 404,
+            "sample_count": 1,
+            "mean_latency_s": null,
+            "median_latency_s": null,
+            "min_latency_s": null,
+            "accuracy_pct": null,
+            "runs": [
+              {
+                "run": 1,
+                "http_status": 404,
+                "latency_s": 2.564,
+                "error_summary": "Publisher model `projects/PROJECT_ID/locations/europe-west2/publishers/google/models/gemini-4-carbon` was not found or your project does not have access to it. Ensure you are using a valid model name and that the model is available in the spe"
+              }
+            ]
+          },
+          "asia-southeast1": {
+            "supported": false,
+            "http_status": 404,
+            "sample_count": 1,
+            "mean_latency_s": null,
+            "median_latency_s": null,
+            "min_latency_s": null,
+            "accuracy_pct": null,
+            "runs": [
+              {
+                "run": 1,
+                "http_status": 404,
+                "latency_s": 0.479,
+                "error_summary": "Publisher model `projects/PROJECT_ID/locations/asia-southeast1/publishers/google/models/gemini-4-carbon` was not found or your project does not have access to it. Ensure you are using a valid model name and that the model is available in the "
+              }
+            ]
+          }
+        },
+        "gemini-4-argon": {
+          "global": {
+            "supported": true,
+            "http_status": 200,
+            "sample_count": 3,
+            "mean_latency_s": 4.301,
+            "median_latency_s": 3.345,
+            "min_latency_s": 3.038,
+            "accuracy_pct": 100.0,
+            "runs": [
+              {
+                "run": 1,
+                "http_status": 200,
+                "latency_s": 6.521,
+                "mentions_spanner": true,
+                "thoughts_tokens": 0,
+                "output_tokens": 25,
+                "list_cost_usd": 0.000704
+              },
+              {
+                "run": 2,
+                "http_status": 200,
+                "latency_s": 3.345,
+                "mentions_spanner": true,
+                "thoughts_tokens": 0,
+                "output_tokens": 25,
+                "list_cost_usd": 0.000704
+              },
+              {
+                "run": 3,
+                "http_status": 200,
+                "latency_s": 3.038,
+                "mentions_spanner": true,
+                "thoughts_tokens": 0,
+                "output_tokens": 22,
+                "list_cost_usd": 0.000644
+              }
+            ]
+          },
+          "us": {
+            "supported": true,
+            "http_status": 200,
+            "sample_count": 3,
+            "mean_latency_s": 4.918,
+            "median_latency_s": 3.667,
+            "min_latency_s": 3.302,
+            "accuracy_pct": 100.0,
+            "runs": [
+              {
+                "run": 1,
+                "http_status": 200,
+                "latency_s": 3.302,
+                "mentions_spanner": true,
+                "thoughts_tokens": 0,
+                "output_tokens": 18,
+                "list_cost_usd": 0.000564
+              },
+              {
+                "run": 2,
+                "http_status": 200,
+                "latency_s": 7.784,
+                "mentions_spanner": true,
+                "thoughts_tokens": 0,
+                "output_tokens": 18,
+                "list_cost_usd": 0.000564
+              },
+              {
+                "run": 3,
+                "http_status": 200,
+                "latency_s": 3.667,
+                "mentions_spanner": true,
+                "thoughts_tokens": 0,
+                "output_tokens": 27,
+                "list_cost_usd": 0.000744
+              }
+            ]
+          },
+          "eu": {
+            "supported": true,
+            "http_status": 200,
+            "sample_count": 3,
+            "mean_latency_s": 3.962,
+            "median_latency_s": 3.241,
+            "min_latency_s": 3.07,
+            "accuracy_pct": 100.0,
+            "runs": [
+              {
+                "run": 1,
+                "http_status": 200,
+                "latency_s": 5.574,
+                "mentions_spanner": true,
+                "thoughts_tokens": 0,
+                "output_tokens": 25,
+                "list_cost_usd": 0.000704
+              },
+              {
+                "run": 2,
+                "http_status": 200,
+                "latency_s": 3.07,
+                "mentions_spanner": true,
+                "thoughts_tokens": 0,
+                "output_tokens": 18,
+                "list_cost_usd": 0.000564
+              },
+              {
+                "run": 3,
+                "http_status": 200,
+                "latency_s": 3.241,
+                "mentions_spanner": true,
+                "thoughts_tokens": 0,
+                "output_tokens": 18,
+                "list_cost_usd": 0.000564
+              }
+            ]
+          },
+          "europe-west2": {
+            "supported": true,
+            "http_status": 200,
+            "sample_count": 3,
+            "mean_latency_s": 5.046,
+            "median_latency_s": 4.675,
+            "min_latency_s": 4.213,
+            "accuracy_pct": 100.0,
+            "runs": [
+              {
+                "run": 1,
+                "http_status": 200,
+                "latency_s": 4.213,
+                "mentions_spanner": true,
+                "thoughts_tokens": 0,
+                "output_tokens": 18,
+                "list_cost_usd": 0.000564
+              },
+              {
+                "run": 2,
+                "http_status": 200,
+                "latency_s": 4.675,
+                "mentions_spanner": true,
+                "thoughts_tokens": 0,
+                "output_tokens": 18,
+                "list_cost_usd": 0.000564
+              },
+              {
+                "run": 3,
+                "http_status": 200,
+                "latency_s": 6.249,
+                "mentions_spanner": true,
+                "thoughts_tokens": 0,
+                "output_tokens": 18,
+                "list_cost_usd": 0.000564
+              }
+            ]
+          },
+          "asia-southeast1": {
+            "supported": true,
+            "http_status": 200,
+            "sample_count": 3,
+            "mean_latency_s": 3.201,
+            "median_latency_s": 3.046,
+            "min_latency_s": 2.666,
+            "accuracy_pct": 100.0,
+            "runs": [
+              {
+                "run": 1,
+                "http_status": 200,
+                "latency_s": 3.046,
+                "mentions_spanner": true,
+                "thoughts_tokens": 0,
+                "output_tokens": 18,
+                "list_cost_usd": 0.000564
+              },
+              {
+                "run": 2,
+                "http_status": 200,
+                "latency_s": 2.666,
+                "mentions_spanner": true,
+                "thoughts_tokens": 0,
+                "output_tokens": 25,
+                "list_cost_usd": 0.000704
+              },
+              {
+                "run": 3,
+                "http_status": 200,
+                "latency_s": 3.891,
+                "mentions_spanner": true,
+                "thoughts_tokens": 0,
+                "output_tokens": 18,
+                "list_cost_usd": 0.000564
+              }
+            ]
+          }
+        }
+      },
+      "legacy_region_check_404": [
+        "us-central1",
+        "europe-west4"
+      ]
+    },
+    "exp6b_gcs_office_uri": {
+      "total_calls": 6,
+      "results": {
+        "gemini-4-hydrogen": {
+          "xlsx": {
+            "http_status": 200,
+            "latency_s": 7.377,
+            "file_bytes": 2436,
+            "gcs_uri_pattern": "gs://<YOUR_BUCKET>/q4_cloud_audit.xlsx",
+            "passed": true,
+            "parsed_json": {
+              "true_subtotal": 305000,
+              "variance": 10000,
+              "final_adjusted_total": 300500
+            },
+            "prompt_tokens": 468,
+            "thoughts_tokens": 211,
+            "list_cost_usd": 0.00269
+          },
+          "docx": {
+            "http_status": 200,
+            "latency_s": 5.17,
+            "file_bytes": 994,
+            "gcs_uri_pattern": "gs://<YOUR_BUCKET>/q4_cloud_audit.docx",
+            "passed": true,
+            "parsed_json": {
+              "true_subtotal": 305000,
+              "variance": 10000,
+              "final_adjusted_total": 300500
+            },
+            "prompt_tokens": 855,
+            "thoughts_tokens": 366,
+            "list_cost_usd": 0.004432
+          }
+        },
+        "gemini-4-carbon": {
+          "xlsx": {
+            "http_status": 200,
+            "latency_s": 31.291,
+            "file_bytes": 2436,
+            "gcs_uri_pattern": "gs://<YOUR_BUCKET>/q4_cloud_audit.xlsx",
+            "passed": true,
+            "parsed_json": {
+              "true_subtotal": 305000,
+              "variance": 10000,
+              "final_adjusted_total": 300500
+            },
+            "prompt_tokens": 468,
+            "thoughts_tokens": 163,
+            "list_cost_usd": 0.006212
+          },
+          "docx": {
+            "http_status": 200,
+            "latency_s": 8.247,
+            "file_bytes": 994,
+            "gcs_uri_pattern": "gs://<YOUR_BUCKET>/q4_cloud_audit.docx",
+            "passed": true,
+            "parsed_json": {
+              "true_subtotal": 305000,
+              "variance": 10000,
+              "final_adjusted_total": 300500
+            },
+            "prompt_tokens": 855,
+            "thoughts_tokens": 270,
+            "list_cost_usd": 0.0099
+          }
+        },
+        "gemini-4-argon": {
+          "xlsx": {
+            "http_status": 400,
+            "latency_s": 1.267,
+            "file_bytes": 2436,
+            "gcs_uri_pattern": "gs://<YOUR_BUCKET>/q4_cloud_audit.xlsx",
+            "passed": false,
+            "error_summary": "Unable to submit request because it has a mimeType parameter with value application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, which is not supported. Update the mimeType and try again. Learn more: https://cloud.google.com/vertex-ai/generative-ai/d"
+          },
+          "docx": {
+            "http_status": 400,
+            "latency_s": 1.038,
+            "file_bytes": 994,
+            "gcs_uri_pattern": "gs://<YOUR_BUCKET>/q4_cloud_audit.docx",
+            "passed": false,
+            "error_summary": "Unable to submit request because it has a mimeType parameter with value application/vnd.openxmlformats-officedocument.wordprocessingml.document, which is not supported. Update the mimeType and try again. Learn more: https://cloud.google.com/vertex-ai/generativ"
+          }
+        }
+      }
+    },
+    "exp6c_schema_and_grounding": {
+      "total_calls": 18,
+      "response_schema_determinism": {
+        "gemini-4-hydrogen": {
+          "thinking_level": "LOW",
+          "runs": 5,
+          "valid_schema_pct": 100.0,
+          "exact_core_decision_pct": 100.0,
+          "unique_full_json_count": 1,
+          "unique_core_action_count": 1,
+          "mean_latency_s": 3.52,
+          "sample_output": {
+            "severity": "SEV2",
+            "primary_root_cause": "PROXY_TIMEOUT_ON_LONG_REASONING",
+            "recommended_action": "ENABLE_ASYNC_INTERACTIONS_BACKGROUND",
+            "affected_traffic_pct": 14
+          }
+        },
+        "gemini-4-carbon": {
+          "thinking_level": "MEDIUM",
+          "runs": 5,
+          "valid_schema_pct": 100.0,
+          "exact_core_decision_pct": 100.0,
+          "unique_full_json_count": 1,
+          "unique_core_action_count": 1,
+          "mean_latency_s": 5.432,
+          "sample_output": {
+            "severity": "SEV2",
+            "primary_root_cause": "PROXY_TIMEOUT_ON_LONG_REASONING",
+            "recommended_action": "ENABLE_ASYNC_INTERACTIONS_BACKGROUND",
+            "affected_traffic_pct": 14
+          }
+        },
+        "gemini-4-argon": {
+          "thinking_level": "MEDIUM",
+          "runs": 5,
+          "valid_schema_pct": 100.0,
+          "exact_core_decision_pct": 100.0,
+          "unique_full_json_count": 1,
+          "unique_core_action_count": 1,
+          "mean_latency_s": 4.704,
+          "sample_output": {
+            "severity": "SEV2",
+            "primary_root_cause": "PROXY_TIMEOUT_ON_LONG_REASONING",
+            "recommended_action": "ENABLE_ASYNC_INTERACTIONS_BACKGROUND",
+            "affected_traffic_pct": 14
+          }
+        }
+      },
+      "google_search_grounding": {
+        "gemini-4-hydrogen": {
+          "thinking_level": "LOW",
+          "http_status": 200,
+          "latency_s": 7.117,
+          "search_queries_count": 3,
+          "search_queries": [
+            "\"Gemini 4 Hydrogen\"",
+            "\"Gemini 4\" Google Cloud Model Garden pricing",
+            "\"Gemini 4\" implicit context caching discount Google Cloud"
+          ],
+          "grounding_chunks_count": 1,
+          "cited_sources": [
+            "google.com"
+          ],
+          "list_cost_usd": 0.004863,
+          "answer_preview": "According to Google Cloud's official pricing documentation, the list prices for **Gemini 4 Hydrogen** (Standard tier) per 1 million tokens are:\n\n* **Global endpoint:**\n  * **Input** (text, image, video, audio): **$1.50**"
+        },
+        "gemini-4-carbon": {
+          "thinking_level": "MEDIUM",
+          "http_status": 200,
+          "latency_s": 38.964,
+          "search_queries_count": 10,
+          "search_queries": [
+            "Gemini 4 Hydrogen Google Cloud pricing",
+            "Gemini 4 implicit context caching discount Google Cloud",
+            "Vertex AI Gemini pricing Google Cloud",
+            "\"gemini-4-hydrogen\" pricing"
+          ],
+          "grounding_chunks_count": 0,
+          "cited_sources": [],
+          "list_cost_usd": 0.021228,
+          "answer_preview": ""
+        },
+        "gemini-4-argon": {
+          "thinking_level": "MEDIUM",
+          "http_status": 200,
+          "latency_s": 24.941,
+          "search_queries_count": 5,
+          "search_queries": [
+            "Gemini 4 Hydrogen Google Cloud",
+            "Gemini 4 implicit context caching discount Google Cloud",
+            "Vertex AI Gemini pricing implicit context caching",
+            "\"Gemini 4 Hydrogen\" \"Model Garden\" OR \"Vertex AI\" pricing"
+          ],
+          "grounding_chunks_count": 0,
+          "cited_sources": [],
+          "list_cost_usd": 0.014968,
+          "answer_preview": "In official Google Cloud Vertex AI and Google AI documentation, the list pricing for **Gemini 4 Hydrogen** (`gemini-4-hydrogen`) and the **Gemini 4** implicit context caching discount are structured by endpoint region an"
+        }
+      }
+    },
+    "exp6d_tools_and_bigquery": {
+      "total_calls": 6,
+      "multiturn_thought_signature": {
+        "gemini-4-hydrogen": {
+          "thinking_level": "LOW",
+          "turn1_http": 200,
+          "turn2_http": 200,
+          "called_tool": "get_spanner_cud_rate",
+          "tool_args": {
+            "region": "us-central1",
+            "commit_years": 3
+          },
+          "thought_signature_present": true,
+          "thought_signature_bytes": 532,
+          "turn1_latency_s": 1.848,
+          "turn2_latency_s": 2.809,
+          "total_roundtrip_s": 4.657,
+          "total_list_cost_usd": 0.003836,
+          "passed_exact_630_72": true,
+          "final_answer_preview": "The 3-year Cloud Spanner CUD hourly rate in `us-central1` is **$0.432 per node** (52% discount).\n\nFor 2 nodes running 730 hours/month:\n* **Calculation:** `$0.432 \u00d7 2 nodes \u00d7 730 ho"
+        },
+        "gemini-4-carbon": {
+          "thinking_level": "MEDIUM",
+          "turn1_http": 200,
+          "turn2_http": 200,
+          "called_tool": "get_spanner_cud_rate",
+          "tool_args": {
+            "commit_years": 3,
+            "region": "us-central1"
+          },
+          "thought_signature_present": true,
+          "thought_signature_bytes": 128,
+          "turn1_latency_s": 17.087,
+          "turn2_latency_s": 7.058,
+          "total_roundtrip_s": 24.145,
+          "total_list_cost_usd": 0.005792,
+          "passed_exact_630_72": true,
+          "final_answer_preview": "The 3-year Cloud Spanner Committed Use Discount (CUD) hourly rate in `us-central1` is **$0.432** per node.\n\n### Monthly Cost Calculation\n* **Hourly rate per node:** $0.432\n* **Numb"
+        },
+        "gemini-4-argon": {
+          "thinking_level": "MEDIUM",
+          "turn1_http": 200,
+          "turn2_http": 200,
+          "called_tool": "get_spanner_cud_rate",
+          "tool_args": {
+            "commit_years": 3,
+            "region": "us-central1"
+          },
+          "thought_signature_present": true,
+          "thought_signature_bytes": 128,
+          "turn1_latency_s": 4.189,
+          "turn2_latency_s": 4.397,
+          "total_roundtrip_s": 8.586,
+          "total_list_cost_usd": 0.005012,
+          "passed_exact_630_72": true,
+          "final_answer_preview": "The 3-year Cloud Spanner Committed Use Discount (CUD) hourly rate in `us-central1` is **$0.432** per node.\n\n**Monthly Cost Calculation:**\n* **Formula:** $\\text{Nodes} \\times \\text{"
+        }
+      },
+      "bigquery_finops_analytics": {
+        "status": "VERIFIED_LIVE",
+        "rows_loaded": 88,
+        "load_duration_ms": 4082.3,
+        "query_duration_ms": 2178.6,
+        "total_bytes_processed": 4320,
+        "top_pareto_leaderboard": [
+          {
+            "model": "gemini-4-hydrogen",
+            "thinking_level": "LOW",
+            "total_tasks": 8,
+            "passed_tasks": 8,
+            "accuracy_pct": 100.0,
+            "avg_latency_s": 11.43,
+            "avg_thoughts": 1549.0,
+            "total_list_usd": 0.1006,
+            "usd_per_correct_answer": 0.0126
+          },
+          {
+            "model": "gemini-4-hydrogen",
+            "thinking_level": "HIGH",
+            "total_tasks": 8,
+            "passed_tasks": 8,
+            "accuracy_pct": 100.0,
+            "avg_latency_s": 18.19,
+            "avg_thoughts": 2608.8,
+            "total_list_usd": 0.1643,
+            "usd_per_correct_answer": 0.0205
+          },
+          {
+            "model": "gemini-4-carbon",
+            "thinking_level": "MEDIUM",
+            "total_tasks": 8,
+            "passed_tasks": 8,
+            "accuracy_pct": 100.0,
+            "avg_latency_s": 27.49,
+            "avg_thoughts": 1419.9,
+            "total_list_usd": 0.2478,
+            "usd_per_correct_answer": 0.031
+          },
+          {
+            "model": "gemini-4-argon",
+            "thinking_level": "HIGH",
+            "total_tasks": 8,
+            "passed_tasks": 8,
+            "accuracy_pct": 100.0,
+            "avg_latency_s": 38.82,
+            "avg_thoughts": 2678.3,
+            "total_list_usd": 0.4528,
+            "usd_per_correct_answer": 0.0566
+          },
+          {
+            "model": "gemini-4-hydrogen",
+            "thinking_level": "XHIGH",
+            "total_tasks": 8,
+            "passed_tasks": 8,
+            "accuracy_pct": 100.0,
+            "avg_latency_s": 77.57,
+            "avg_thoughts": 11984.0,
+            "total_list_usd": 0.7275,
+            "usd_per_correct_answer": 0.0909
+          },
+          {
+            "model": "gemini-4-carbon",
+            "thinking_level": "HIGH",
+            "total_tasks": 8,
+            "passed_tasks": 8,
+            "accuracy_pct": 100.0,
+            "avg_latency_s": 101.86,
+            "avg_thoughts": 8487.6,
+            "total_list_usd": 1.3806,
+            "usd_per_correct_answer": 0.1726
+          }
+        ],
+        "all_configs_count": 11
+      }
+    }
+  }
+}

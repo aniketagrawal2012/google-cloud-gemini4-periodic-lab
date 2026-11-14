@@ -21,9 +21,11 @@ Implements official November 2026 Google Cloud Gemini Enterprise Agent Platform 
 
 from __future__ import annotations
 
+import io
 import re
+import zipfile
 from dataclasses import dataclass
-from typing import Literal
+from typing import Any, Literal
 
 from pydantic import BaseModel, Field
 
@@ -269,3 +271,163 @@ def estimate_cost_usd(
         + (cached_tokens / 1_000_000.0) * spec.cached_input_usd_per_1m
         + (billable_output / 1_000_000.0) * spec.output_and_thinking_usd_per_1m
     )
+
+
+MULTI_REGION_LOCATIONS = ("global", "us", "eu")
+ARGON_SINGLE_REGIONS = ("europe-west2", "asia-southeast1")
+SUPPORTED_ARGON_REGIONS = MULTI_REGION_LOCATIONS + ARGON_SINGLE_REGIONS
+
+
+class EndpointResolution(BaseModel):
+    model: ElementModel
+    requested_region: str
+    effective_region: str
+    endpoint_url: str
+    single_region_enforced: bool
+    note: str
+
+
+def resolve_gcp_endpoint(
+    model: ElementModel,
+    *,
+    project_id: str,
+    preferred_region: str = "global",
+    streaming: bool = False,
+) -> EndpointResolution:
+    """Resolve the exact live Google Cloud v1beta1 endpoint honoring official Gemini 4 residency.
+
+    Verified empirically in Experiment 6A against Google Cloud's live endpoints (Nov 14, 2026):
+    - `global`, `us`, and `eu` multi-regions work across ALL three elements (Hydrogen, Carbon, Argon)
+      and MUST use the unified hostname `https://aiplatform.googleapis.com`.
+    - Single-region endpoints (`europe-west2` London, `asia-southeast1` Singapore) are exclusive
+      to `gemini-4-argon` and use regional hostnames `https://{region}-aiplatform.googleapis.com`.
+    - Legacy `us-central1` / `europe-west4` endpoints return HTTP 404 on Gemini 4; requesting them
+      gracefully maps to the corresponding `us` or `eu` multi-region residency boundary.
+    """
+    spec = GEMINI4_SPECS[model]
+    req_reg = preferred_region.strip().lower() or "global"
+    method = "streamGenerateContent?alt=sse" if streaming else "generateContent"
+
+    if req_reg in MULTI_REGION_LOCATIONS:
+        eff_reg = req_reg
+        host = "https://aiplatform.googleapis.com"
+        single_enforced = False
+        note = (
+            f"Using unified Google Cloud hostname `aiplatform.googleapis.com` with `{eff_reg}` "
+            f"{'multi-region residency' if eff_reg in ('us', 'eu') else 'global dynamic routing'} for {model}."
+        )
+    elif req_reg in ARGON_SINGLE_REGIONS and spec.supports_single_region:
+        eff_reg = req_reg
+        host = f"https://{eff_reg}-aiplatform.googleapis.com"
+        single_enforced = True
+        note = f"Single-region data residency honored natively on `{eff_reg}` via Gemini 4 Argon."
+    else:
+        # Map regional requests to nearest official residency boundary (`eu`, `us`, or `global`)
+        if req_reg.startswith("europe-"):
+            eff_reg = "eu"
+        elif req_reg.startswith("us-"):
+            eff_reg = "us"
+        else:
+            eff_reg = "global"
+        host = "https://aiplatform.googleapis.com"
+        single_enforced = False
+        note = (
+            f"`{req_reg}` is not a live single-region endpoint for `{model}`; mapped cleanly to "
+            f"`{eff_reg}` via unified `aiplatform.googleapis.com` "
+            "(for single-region residency, select `gemini-4-argon` on `europe-west2` or `asia-southeast1`)."
+        )
+
+    url = (
+        f"{host}/v1beta1/projects/{project_id}/locations/{eff_reg}"
+        f"/publishers/google/models/{model}:{method}"
+    )
+    return EndpointResolution(
+        model=model,
+        requested_region=req_reg,
+        effective_region=eff_reg,
+        endpoint_url=url,
+        single_region_enforced=single_enforced,
+        note=note,
+    )
+
+
+class OOXMLAuditResult(BaseModel):
+    valid: bool
+    kind: Literal["xlsx", "docx"]
+    present_parts: list[str] = Field(default_factory=list)
+    missing_required_parts: list[str] = Field(default_factory=list)
+    guidance: str
+
+
+def validate_ooxml_bytes(data: bytes, kind: Literal["xlsx", "docx"]) -> OOXMLAuditResult:
+    """Verify OOXML ZIP completeness before sending binary Office files to Hydrogen or Carbon.
+
+    Empirically motivated by Experiment 5: omitting `xl/styles.xml` or `xl/sharedStrings.xml`
+    from custom ERP-generated `.xlsx` exports can cause server-side parsing failures.
+    """
+    required = (
+        ["[Content_Types].xml", "xl/workbook.xml", "xl/styles.xml", "xl/sharedStrings.xml"]
+        if kind == "xlsx"
+        else ["[Content_Types].xml", "word/document.xml"]
+    )
+    try:
+        with zipfile.ZipFile(io.BytesIO(data), "r") as zf:
+            names = zf.namelist()
+    except zipfile.BadZipFile:
+        return OOXMLAuditResult(
+            valid=False,
+            kind=kind,
+            present_parts=[],
+            missing_required_parts=required,
+            guidance="Payload is not a valid OOXML ZIP archive.",
+        )
+    missing = [part for part in required if part not in names]
+    if missing:
+        return OOXMLAuditResult(
+            valid=False,
+            kind=kind,
+            present_parts=names,
+            missing_required_parts=missing,
+            guidance=(
+                f"Include standards-compliant OOXML parts {missing} before sending "
+                "via inlineData or Cloud Storage fileData.fileUri."
+            ),
+        )
+    return OOXMLAuditResult(
+        valid=True,
+        kind=kind,
+        present_parts=names,
+        missing_required_parts=[],
+        guidance="Standards-compliant OOXML package ready for native Gemini 4 Hydrogen/Carbon ingestion.",
+    )
+
+
+def build_multiturn_tool_continuation(
+    *,
+    prior_contents: list[dict[str, Any]],
+    model_response_content: dict[str, Any],
+    function_name: str,
+    function_response_payload: dict[str, Any],
+) -> tuple[list[dict[str, Any]], int]:
+    """Append a FunctionResponse turn while preserving Gemini 4's `thoughtSignature` verbatim.
+
+    Returns `(updated_contents, thought_signature_bytes)`.
+    """
+    parts = model_response_content.get("parts", [])
+    sig_bytes = max((len(p.get("thoughtSignature", "")) for p in parts if isinstance(p, dict)), default=0)
+    updated = [
+        *prior_contents,
+        model_response_content,
+        {
+            "role": "user",
+            "parts": [
+                {
+                    "functionResponse": {
+                        "name": function_name,
+                        "response": function_response_payload,
+                    }
+                }
+            ],
+        },
+    ]
+    return updated, sig_bytes

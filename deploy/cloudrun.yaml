@@ -1,0 +1,48 @@
+# Copyright 2026 Google LLC
+# Licensed under the Apache License, Version 2.0
+#
+# Production Cloud Run manifest for the Gemini 4 Periodic Element Router Gateway.
+# Note: `timeoutSeconds: 360` accommodates deep-horizon buffered reasoning streams
+# (e.g., Carbon:MEDIUM / Hydrogen:XHIGH) without 60s default ingress resets.
+
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: gemini4-periodic-router
+  labels:
+    app.kubernetes.io/part-of: google-cloud-gemini4-periodic-lab
+spec:
+  template:
+    metadata:
+      annotations:
+        autoscaling.knative.dev/minScale: "0"
+        autoscaling.knative.dev/maxScale: "20"
+        run.googleapis.com/execution-environment: gen2
+    spec:
+      containerConcurrency: 40
+      timeoutSeconds: 360
+      serviceAccountName: gemini4-router-sa@YOUR_GCP_PROJECT_ID.iam.gserviceaccount.com
+      containers:
+        - image: us-central1-docker.pkg.dev/YOUR_GCP_PROJECT_ID/gemini4/periodic-router:latest
+          ports:
+            - containerPort: 8080
+          env:
+            - name: GOOGLE_CLOUD_PROJECT
+              value: YOUR_GCP_PROJECT_ID
+            - name: BIGQUERY_TELEMETRY_TABLE
+              value: YOUR_GCP_PROJECT_ID.gemini4_finops.router_telemetry
+          resources:
+            limits:
+              cpu: "2"
+              memory: 1Gi
+          startupProbe:
+            httpGet:
+              path: /healthz
+              port: 8080
+            initialDelaySeconds: 3
+            periodSeconds: 5
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: 8080
+            periodSeconds: 15

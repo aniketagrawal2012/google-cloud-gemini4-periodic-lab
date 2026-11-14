@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>The Periodic Table of Gemini 4: 7 Architectural Insights from 188 Live Google Cloud Experiments on Hydrogen, Carbon, and Argon</title>
-  <meta name="description" content="188 live experiments on Google Cloud's November 2026 Gemini 4 Hydrogen, Carbon, and Argon models — uncovering thinking-level calibration, 165 tok/s streaming velocity, 95% implicit caching, framing envelopes, and native Office MIME ingestion." />
-  <meta property="og:title" content="The Periodic Table of Gemini 4: 188 Live Experiments on Google Cloud’s New Hydrogen, Carbon, and Argon" />
-  <meta property="og:description" content="Gemini 4 Hydrogen launched 48 hours ago. Carbon launched 4 days ago. Argon anchors 12-month regional GA. Here are 7 empirical engineering insights from 188 live API calls — plus the Apache-2.0 router to match every workload to its ideal element." />
+  <title>The Periodic Table of Gemini 4: 8 Architectural Insights from 255 Live Google Cloud Experiments on Hydrogen, Carbon, and Argon</title>
+  <meta name="description" content="255 live experiments on Google Cloud's November 2026 Gemini 4 Hydrogen, Carbon, and Argon models — covering thinking-level calibration, 165 tok/s streaming, 95% implicit caching, multi-region us/eu & single-region Argon residency, native Cloud Storage gs:// Office ingestion, 100% responseSchema repeatability, thoughtSignature tool loops, and BigQuery FinOps." />
+  <meta property="og:title" content="The Periodic Table of Gemini 4: 255 Live Google Cloud Experiments on Hydrogen, Carbon, and Argon" />
+  <meta property="og:description" content="Gemini 4 Hydrogen launched 48 hours ago. Carbon launched 4 days ago. Argon anchors 12-month GA & single-region residency. Here are 8 empirical Google Cloud insights from 255 live API calls — plus the Cloud Run, ADK, & BigQuery Apache-2.0 reference repo." />
   <meta property="og:image" content="https://raw.githubusercontent.com/aniketagrawal2012/google-cloud-gemini4-periodic-lab/main/docs/figures/fig1_periodic_table_hero.gif" />
   <style>
     body { max-width: 820px; margin: 40px auto; padding: 0 20px; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Georgia, serif; line-height: 1.72; color: #1f2937; background: #ffffff; }
@@ -27,48 +27,49 @@
 <body>
 <article>
 
-<h1>The Periodic Table of Gemini 4: 188 Live Experiments on Google Cloud’s New Hydrogen, Carbon, and Argon</h1>
+<h1>The Periodic Table of Gemini 4: 255 Live Google Cloud Experiments on Hydrogen, Carbon, and Argon</h1>
 
-<p class="subtitle">Gemini 4 Hydrogen launched 48 hours ago. Carbon launched 4 days ago. Argon anchors 12-month single-region GA. Here are 7 architectural insights from 188 live Google Cloud API calls — plus the Apache-2.0 router that matches every workload to its ideal element.</p>
+<p class="subtitle">Gemini 4 Hydrogen launched 48 hours ago. Carbon launched 4 days ago. Argon anchors 12-month GA and single-region residency. Here are 8 empirical insights from 255 live Google Cloud API calls — across multi-region endpoints, Cloud Storage <code>gs://</code>, Search Grounding, and BigQuery — plus a production Cloud Run &amp; ADK reference repo.</p>
 
 <figure>
-  <img src="https://raw.githubusercontent.com/aniketagrawal2012/google-cloud-gemini4-periodic-lab/main/docs/figures/fig1_periodic_table_hero.gif" alt="The Periodic Table of Gemini 4 on Google Cloud — Hydrogen (#1), Carbon (#6), and Argon (#18) live specs and benchmark summary" />
-  <figcaption>Figure 1: The Gemini 4 Periodic Table on Google Cloud’s Gemini Enterprise Agent Platform (global, v1beta1) — live specifications, pricing, and empirical findings across 188 API calls executed on November 14, 2026. All raw JSON telemetry is published in the companion Apache-2.0 repository.</figcaption>
+  <img src="https://raw.githubusercontent.com/aniketagrawal2012/google-cloud-gemini4-periodic-lab/main/docs/figures/fig1_periodic_table_hero.gif" alt="The Periodic Table of Gemini 4 on Google Cloud — Hydrogen (#1), Carbon (#6), and Argon (#18) live specs and benchmark summary across 255 live API calls" />
+  <figcaption>Figure 1: The Gemini 4 Periodic Table on Google Cloud’s Gemini Enterprise Agent Platform (v1beta1) — live specifications, pricing, and empirical findings across 255 live API calls executed on November 14, 2026 across global, multi-region (us/eu), single-region Argon, Cloud Storage, and BigQuery. All raw JSON telemetry is published in the companion Apache-2.0 repository.</figcaption>
 </figure>
 
 <p>In the span of thirty days, Google Cloud introduced an inspiring new mental model for frontier AI architecture: <strong>the Periodic Table of Gemini 4</strong>.</p>
 
-<p>On <strong>October 13, 2026</strong>, <a href="https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/gemini/4-argon"><strong>Gemini 4 Argon</strong></a> (<code>gemini-4-argon</code>) reached General Availability as the enterprise workhorse — bringing a 12-month stability commitment (October 2027+) and single-region data residency endpoints. On <strong>November 10, 2026</strong>, <a href="https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/gemini/4-carbon"><strong>Gemini 4 Carbon</strong></a> (<code>gemini-4-carbon</code>) arrived as a Google Frontier Model engineered for deep multi-step reasoning and agentic synthesis. And just <strong>48 hours ago, on November 12, 2026</strong>, <a href="https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/gemini/4-hydrogen"><strong>Gemini 4 Hydrogen</strong></a> (<code>gemini-4-hydrogen</code>) debuted at <strong>62.5% lower list price</strong> ($1.50/$7.50 per 1M tokens) — packing an exclusive <code>XHIGH</code> deep-verification tier, a 65K non-streaming output cap, native Microsoft Office ingestion, and a <strong>95% implicit cache discount</strong> ($0.075/1M cached tokens).</p>
+<p>On <strong>October 13, 2026</strong>, <a href="https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/gemini/4-argon"><strong>Gemini 4 Argon</strong></a> (<code>gemini-4-argon</code>) reached General Availability as the enterprise workhorse — bringing a 12-month stability commitment (October 2027+) plus exclusive single-region data residency in <code>europe-west2</code> (London) and <code>asia-southeast1</code> (Singapore). On <strong>November 10, 2026</strong>, <a href="https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/gemini/4-carbon"><strong>Gemini 4 Carbon</strong></a> (<code>gemini-4-carbon</code>) arrived as a Google Frontier Model engineered for deep multi-step reasoning and agentic synthesis. And just <strong>48 hours ago, on November 12, 2026</strong>, <a href="https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/gemini/4-hydrogen"><strong>Gemini 4 Hydrogen</strong></a> (<code>gemini-4-hydrogen</code>) debuted at <strong>62.5% lower list price</strong> ($1.50/$7.50 per 1M tokens) — packing an exclusive <code>XHIGH</code> deep-verification tier, a 65K non-streaming output cap, native Microsoft Office ingestion, and a <strong>95% implicit cache discount</strong> ($0.075/1M cached tokens).</p>
 
-<p>If you only skim the <a href="https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/start/get-started-with-gemini-4">Get Started with Gemini 4</a> overview, it is tempting to treat all three models as interchangeable tiers along a single straight line. <strong>In practice, each element has been purposefully engineered for a distinct architectural niche — and understanding how their thinking levels, streaming profiles, implicit caches, and MIME capabilities behave on live traffic can improve both accuracy and cost efficiency by up to 13.7×.</strong></p>
+<p>If you only skim the <a href="https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/start/get-started-with-gemini-4">Get Started with Gemini 4</a> overview, it is tempting to treat all three models as interchangeable tiers along a single straight line. <strong>In practice, each element has been purposefully engineered for a distinct architectural niche — and understanding how their thinking levels, streaming profiles, implicit caches, regional endpoints, and Cloud Storage integrations behave on live Google Cloud traffic can improve both accuracy and cost efficiency by up to 13.7×.</strong></p>
 
-<p>To measure those differences firsthand, I built a reproducible, open-source experimental harness (<a href="https://github.com/aniketagrawal2012/google-cloud-gemini4-periodic-lab"><code>google-cloud-gemini4-periodic-lab</code></a>, Apache-2.0) and ran <strong>188 live API calls</strong> against Google Cloud’s global <strong>Gemini Enterprise Agent Platform</strong> (<code>v1beta1</code>) across all 10 valid Gemini 4 configurations plus a <code>gemini-3.8-flash</code> baseline.</p>
+<p>To measure those differences firsthand, I built a full, production-realistic, open-source Google Cloud reference repository (<a href="https://github.com/aniketagrawal2012/google-cloud-gemini4-periodic-lab"><code>google-cloud-gemini4-periodic-lab</code></a>, Apache-2.0 — complete with a FastAPI Cloud Run Gateway, ADK routing callback, BigQuery FinOps SQL DDL, Dockerfile, and GitHub Actions CI) and ran <strong>255 live API calls</strong> across Google Cloud’s <strong>Gemini Enterprise Agent Platform</strong> (<code>global</code>, <code>us</code>, <code>eu</code>, <code>europe-west2</code>, and <code>asia-southeast1</code>), <strong>Cloud Storage (<code>gs://</code>)</strong>, <strong>Google Search Grounding</strong>, and <strong>BigQuery</strong>.</p>
 
-<p>Every single Gemini 4 model achieved <strong>100% (8/8)</strong> on our multi-step reasoning suite when paired with its intended reasoning tier. Along the way, the live wire telemetry revealed <strong>7 fascinating architectural insights</strong> that every cloud architect should know before designing a Gemini 4 routing layer.</p>
+<p>Every single Gemini 4 model achieved <strong>100% (8/8)</strong> on our multi-step reasoning suite when paired with its intended reasoning tier — and <strong>100% (15/15)</strong> on strict <code>responseSchema</code> operational repeatability and multi-turn <code>thoughtSignature</code> function calling. Along the way, the live wire telemetry revealed <strong>8 fascinating architectural insights</strong> that every cloud architect should know before designing a Gemini 4 routing layer.</p>
 
-<blockquote><strong>TL;DR — 7 Empirical Insights from 188 Live Google Cloud Calls (Nov 14, 2026):</strong><br/>
+<blockquote><strong>TL;DR — 8 Empirical Insights from 255 Live Google Cloud Calls (Nov 14, 2026):</strong><br/>
 1. <strong>How <code>thinkingLevel: "LOW"</code> Specializes Across Elements:</strong> On Argon and Carbon, <code>LOW</code> operates as an ultra-fast direct-answer mode (<code>0.0</code> internal thinking tokens, 5.01s on Argon) built for low-latency non-reasoning tasks, while <code>MEDIUM</code>/<code>HIGH</code> unlock full reasoning (<strong>100% 8/8</strong> on <code>Carbon:MEDIUM</code> and <code>Argon:HIGH</code>). Meanwhile, <code>Hydrogen:LOW</code> keeps chain-of-thought active (<strong>1,549 avg thoughts</strong>) and reaches <strong>100% (8/8)</strong> in 11.43s for <strong>$0.101</strong>.<br/>
 2. <strong>Thinking-Token Economics &amp; Carbon’s <code>MEDIUM</code> Sweet Spot:</strong> Because internal thinking tokens bill at the output rate, reasoning depth drives total spend. <code>Carbon:MEDIUM</code> (default) hit <strong>100% (8/8)</strong> using a remarkably lean <code>1,419.9</code> average thoughts — costing <strong>$0.248 list / $0.124 under the Nov 30 promo credit</strong> (<strong>2.9×–5.9× more economical</strong> than reserving <code>Hydrogen:XHIGH</code> for routine tasks).<br/>
 3. <strong>Hydrogen’s 2.5× Decode Lead &amp; Designing for Deep-Horizon <code>XHIGH</code>:</strong> Hydrogen sustained <strong>154–166 visible tok/s</strong> (2.0×–2.6× faster than Argon/Carbon). Meanwhile, deep-verification tiers (<code>Hydrogen:XHIGH</code> at 48,841 thoughts / 303.6s and <code>Carbon:HIGH</code> at 265.1s) and <code>Carbon:MEDIUM</code>’s buffered delivery (86.3s) pair best with asynchronous <code>background=True</code> execution via the Interactions API.<br/>
-4. <strong>Every Element Owns a Distinct Enterprise Lane:</strong> Hydrogen leads on high-velocity value &amp; Office document processing; Carbon leads on default-<code>MEDIUM</code> frontier precision; Argon shines wherever <strong>single-region data residency</strong> and <strong>12-month GA lifecycle stability (Oct 2027+)</strong> are mandatory.<br/>
+4. <strong>Every Element Owns a Distinct Enterprise Lane:</strong> Hydrogen leads on high-velocity value &amp; Office extraction; Carbon leads on default-<code>MEDIUM</code> frontier precision; Argon uniquely delivers <strong>single-region data residency (<code>europe-west2</code> London &amp; <code>asia-southeast1</code> Singapore)</strong> alongside a <strong>12-month GA lifecycle commitment (Oct 2027+)</strong>.<br/>
 5. <strong>95% Implicit Durable Caching &amp; 16,384-Token Block Alignment:</strong> Above the 4,096-token threshold, Hydrogen locked onto <strong>16,384 cached tokens (84.62%, 4×4,096 blocks)</strong> and cut per-turn cost <strong>76.6% ($0.0306 → $0.0072)</strong> — proving how keeping dynamic timestamps out of byte 0 preserves the full 95% discount.<br/>
-6. <strong>Structured Framing Envelope (+31 / +4) &amp; Self-Calibrated Sampling:</strong> All three Gemini 4 models apply an exact <code>+31</code> input / <code>+4</code> output framing envelope relative to <code>gemini-3.8-flash</code> (<em>R² = 1.0000</em>) and manage sampling internally per official docs (ignoring custom <code>temperature=0.0</code>, making <code>responseSchema</code> and eval suites the right determinism primitives).<br/>
-7. <strong>Native Binary <code>.xlsx</code> &amp; <code>.docx</code> Ingestion + OOXML Best Practice:</strong> Hydrogen (4.64s / 4.23s) and Carbon (9.51s / 7.74s) both passed <strong>100%</strong> on raw binary spreadsheets and Word memos with zero Python parsers (while Argon focuses on core modalities and cleanly validates Office MIME with <code>HTTP 400</code>). Including standards-compliant <code>xl/styles.xml</code> and <code>xl/sharedStrings.xml</code> ensures smooth OOXML ingestion.</blockquote>
+6. <strong>Structured Framing Envelope (+31 / +4) &amp; Self-Calibrated Sampling:</strong> All three Gemini 4 models apply an exact <code>+31</code> input / <code>+4</code> output framing envelope relative to <code>gemini-3.8-flash</code> (<em>R² = 1.0000</em>) and manage sampling internally per official docs (ignoring custom <code>temperature=0.0</code>).<br/>
+7. <strong>Native Binary <code>.xlsx</code> &amp; <code>.docx</code> Ingestion (Inline &amp; Cloud Storage <code>gs://</code>):</strong> Both Hydrogen and Carbon passed <strong>100%</strong> on raw binary spreadsheets and Word memos via both <code>inlineData</code> and direct <strong>Cloud Storage <code>gs://</code> URIs</strong> (as low as <strong>$0.00269</strong> on Hydrogen!), with zero Python parsers.<br/>
+8. <strong>End-to-End Live GCP Integration Proof (67 Live Platform Calls):</strong> Verified <strong>all 3 models on <code>global</code>, <code>us</code>, and <code>eu</code></strong> (via unified <code>aiplatform.googleapis.com</code>) + <strong>Argon single-region <code>europe-west2</code> (5.05s) &amp; <code>asia-southeast1</code> (3.20s)</strong>, proved <strong>15/15 (100%) <code>responseSchema</code> operational repeatability</strong>, verified live <strong>Google Search Grounding</strong> &amp; <strong>multi-turn <code>thoughtSignature</code> (532B/128B) tool loops</strong>, and executed live <strong>BigQuery FinOps SQL</strong> across all 88 evaluation records.</blockquote>
 
 <h2>First: Reading the Architectural Blueprint of Gemini 4</h2>
 
 <p>Before running a single prompt, I reviewed every official model card, developer guide, and pricing schedule across <a href="https://cloud.google.com/model-garden/pricing">Google Cloud Model Garden Pricing</a>, <a href="https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/thinking">Gemini Thinking</a>, <a href="https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/context-cache/context-cache-overview">Context Caching</a>, and <a href="https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/model-versions">Model Versions &amp; Lifecycle</a>. Putting all three elements side by side makes Google Cloud’s deliberate portfolio design immediately clear:</p>
 
-<pre><code>ELEMENT    LAUNCH / SLA         LIST ($/1M IN/CACHE/OUT*)  THINKING          CAP    OFFICE
----------  -------------------  -------------------------  ----------------  -----  ------
-Hydrogen   Nov 12 (45d notice)  $1.50 / $0.075 / $7.50     LOW/MED/HI*/XH    65K    YES
-Carbon     Nov 10 (Frontier)    $4.00 / $0.200 / $20.00    LOW/MED*/HIGH     32K    YES
-Argon      Oct 13 (12-mo GA)    $4.00 / $0.200 / $20.00    LOW/MED*/HIGH     32K    Route
-3.8 Flash  Baseline reference   $1.50 / $0.150 / $7.50     MIN/LOW/MED/HIGH  65K    Route
-------------------------------------------------------------------------------------------
-* Thinking tokens bill at the output rate ($7.50/1M Hydrogen; $20/1M Carbon &amp; Argon).
-* Nov 2026 50% promo credit applies to Argon &amp; Carbon through Nov 30 ($2/$0.10/$10 net).
-* Effective Nov 13, 2026: >32K completions bill retrievable tokens even on client timeout.</code></pre>
+<pre><code>ELEMENT    SLA / LAUNCH       $/1M IN/CAC/OUT*    THINKING        CAP
+---------  -----------------  ------------------  --------------  ---
+Hydrogen   Nov 12 (45d)       $1.50/$0.075/$7.50  LO/MD/HI*/XH    65K
+Carbon     Nov 10 (Frontier)  $4.00/$0.200/$20.0  LO/MD*/HI       32K
+Argon      Oct 13 (12-mo GA)  $4.00/$0.200/$20.0  LO/MD*/HI       32K
+3.8 Flash  Baseline ref       $1.50/$0.150/$7.50  MN/LO/MD/HI     65K
+---------------------------------------------------------------------
+* Thinking bills at output rate ($7.50 Hydrogen; $20 Carbon/Argon).
+* Nov 2026 50% promo on Argon &amp; Carbon thru Nov 30 ($2/$0.10/$10).
+* Effective Nov 13: &gt;32K completions bill even on client timeout.</code></pre>
 
 <p>Two architectural upgrades jump off the page immediately: first, <strong>Gemini 4 raises the implicit cache discount from 90% to 95%</strong>, making Hydrogen’s cached input rate (<code>$0.075/1M</code>) <strong>2× more affordable than Gemini 3.8 Flash</strong> (<code>$0.15/1M</code>) at the exact same base price. Second, notice the calibrated defaults: <strong>Hydrogen defaults to <code>HIGH</code></strong>, while <strong>Carbon and Argon default to <code>MEDIUM</code></strong>. Because <code>google-genai==2.34.0</code> emits a client enum warning for Hydrogen’s brand-new <code>XHIGH</code> level, our benchmark harness communicates directly with the <code>v1beta1</code> REST endpoint to capture unvarnished wire telemetry.</p>
 
@@ -130,7 +131,7 @@ gemini-3.8-flash   MEDIUM   7 / 8   87.5%   12.4s   2,196.1  $0.1385  $0.0693</c
 <ul>
   <li><strong><code>gemini-4-carbon:MEDIUM</code> (Default) Shines on Reasoning Efficiency:</strong> Carbon solved all <strong>8/8 (100.0%)</strong> tasks using a remarkably disciplined <strong>1,419.9 average thinking tokens</strong> — costing <strong>$0.2478 at list price (2.9× more economical than <code>Hydrogen:XHIGH</code>)</strong> and just <strong>$0.1239 under Google Cloud’s Nov 30, 2026 50% promotional credit (5.9× more economical than <code>Hydrogen:XHIGH</code>)</strong>, while finishing <strong>2.8× faster (27.5s vs. 77.6s)</strong>.</li>
   <li><strong><code>gemini-4-hydrogen:XHIGH</code> Is Purpose-Built for Exhaustive Verification:</strong> On our 8-task suite, <code>Hydrogen:XHIGH</code> invested an average of <strong>11,984 internal thinking tokens</strong> (179× visible output, peaking at 47,100 tokens on the subtle <code>asyncio</code> concurrency review T3) for $0.7275. That makes <code>XHIGH</code> a powerhouse when you genuinely want exhaustive offline self-verification on high-stakes audits — while <code>Hydrogen:LOW</code> ($0.1006) and <code>Hydrogen:HIGH</code> ($0.1643) remain the unbeatable everyday interactive workhorses.</li>
-  <li><strong>Argon’s Enterprise Sweet Spot:</strong> Sharing the $4/$20 tariff (and the same Nov-2026 50% promo credit: $0.0464 on <code>MEDIUM</code>, $0.2264 on <code>HIGH</code>), Argon trades a touch of default-<code>MEDIUM</code> reasoning depth for two mission-critical enterprise guarantees neither Hydrogen nor Carbon currently offers: <strong>single-region data residency</strong> (e.g., <code>us-central1</code>, <code>europe-west4</code>) and a <strong>12-month GA stability commitment through October 2027+</strong>.</li>
+  <li><strong>Argon’s Enterprise Sweet Spot:</strong> Sharing the $4/$20 tariff (and the same Nov-2026 50% promo credit: $0.0464 on <code>MEDIUM</code>, $0.2264 on <code>HIGH</code>), Argon trades a touch of default-<code>MEDIUM</code> reasoning depth for two mission-critical enterprise guarantees neither Hydrogen nor Carbon currently offers: <strong>single-region data residency</strong> (<code>europe-west2</code> London and <code>asia-southeast1</code> Singapore, alongside CMEK, VPC-SC, and Access Transparency) and a <strong>12-month GA stability commitment through October 2027+</strong>.</li>
 </ul>
 
 <h2>Insight #3: Streaming Velocity — Hydrogen’s 2.5× Decode Lead &amp; Designing for Deep-Horizon Jobs</h2>
@@ -211,50 +212,67 @@ gemini-3.8-flash   MEDIUM   7 / 8   87.5%   12.4s   2,196.1  $0.1385  $0.0693</c
 
 <p><strong>Helpful OOXML Engineering Tip:</strong> While constructing synthetic test workbooks, an ultra-minimal hand-zipped <code>.xlsx</code> that omitted standard <code>xl/styles.xml</code> and <code>xl/sharedStrings.xml</code> parts returned a server parsing error; once standard OOXML parts were included, both Hydrogen and Carbon parsed the binary workbook with 100% accuracy. If your enterprise exports spreadsheets from custom legacy ERP generators, validate OOXML completeness before sending raw bytes via <code>inlineData</code>.</p>
 
-<h2>Putting It All Together: The Empirically Calibrated Periodic Element Router</h2>
+<h2>Insight #8: Real Google Cloud Platform Integration — Multi-Region <code>us</code>/<code>eu</code>, Single-Region Argon, Cloud Storage <code>gs://</code>, 100% <code>responseSchema</code> &amp; Live BigQuery FinOps</h2>
 
-<p>Every architectural insight above is packaged into an open-source, unit-tested Python module (<a href="https://github.com/aniketagrawal2012/google-cloud-gemini4-periodic-lab/blob/main/app/periodic_router.py"><code>app/periodic_router.py</code></a>, Apache-2.0, 6/6 pytest passing) ready to plug directly into <a href="https://adk.dev/">Google Agent Development Kit (ADK)</a> agents running on <a href="https://docs.cloud.google.com/gemini-enterprise-agent-platform/scale">Agent Engine</a>:</p>
+<p><strong>The Live GCP Integration Experiment (Experiment 6 — 67 Additional Live Calls Across 4 GCP Services):</strong> Real enterprise workloads never live in an isolated prompt notebook — they span regional residency boundaries, Google Cloud Storage buckets, strict JSON tool contracts, grounded web retrieval, and BigQuery FinOps warehouses. To validate Gemini 4 end-to-end on real Google Cloud infrastructure (bringing our suite to <strong>255 cumulative live calls</strong>), I ran four dedicated platform experiments:</p>
+
+<figure>
+  <img src="https://raw.githubusercontent.com/aniketagrawal2012/google-cloud-gemini4-periodic-lab/main/docs/figures/fig8_gcp_platform_integration.png" alt="Live Google Cloud Platform Integration Telemetry: 5-Location Residency Matrix, Cloud Storage gs:// Office Ingestion, 100% responseSchema Repeatability, thoughtSignature Tool Loops, and Live BigQuery FinOps SQL" />
+  <figcaption>Figure 8: Live Google Cloud Platform Integration Suite (Experiment 6, 67 live calls). Panel A maps live HTTP 200 latency across all 5 official Gemini 4 GCP locations. Panel B verifies native Cloud Storage gs:// binary Office ingestion and 15/15 (100%) responseSchema operational repeatability plus Google Search Grounding. Panel C proves 100% 2-turn thoughtSignature tool continuity and live BigQuery FinOps SQL verification.</figcaption>
+</figure>
+
+<ol>
+  <li><strong>Exact Official GCP Endpoint &amp; Residency Matrix (Exp 6A — 37 Live Calls):</strong> Live testing across Google Cloud’s official model-card locations uncovered a huge migration detail: <strong>all three Gemini 4 elements</strong> serve live (<code>HTTP 200</code>) across <strong><code>global</code>, <code>us</code>, and <code>eu</code> multi-region residency</strong> (<code>Hydrogen</code>: <code>1.79s / 1.90s / 1.71s</code>; <code>Carbon</code>: <code>3.22s / 3.32s / 3.97s</code>; <code>Argon</code>: <code>4.30s / 4.92s / 3.96s</code>) — and <code>us</code>/<code>eu</code> multi-regions MUST target the unified hostname <code>https://aiplatform.googleapis.com/v1beta1/projects/{project}/locations/{us|eu}/...</code> (using <code>us-aiplatform.googleapis.com</code> returns <code>HTTP 400</code>). Meanwhile, <strong>true single-region data residency in <code>europe-west2</code> (London, 5.05s) and <code>asia-southeast1</code> (Singapore, 3.20s — faster than <code>global</code> from APAC!) is an exclusive Gemini 4 Argon superpower</strong> via <code>{region}-aiplatform.googleapis.com</code> (note that legacy Gemini 2.5/3.x regions like <code>us-central1</code> and <code>europe-west4</code> return <code>HTTP 404</code> on Gemini 4, so our router automatically maps them to <code>us</code>/<code>eu</code> multi-regions cleanly!).</li>
+  <li><strong>Direct Cloud Storage (<code>gs://</code>) Binary Office Ingestion with Zero ETL (Exp 6B — 6 Live Calls):</strong> Uploading our standards-compliant <code>.xlsx</code> and <code>.docx</code> audit artifacts directly to a Google Cloud Storage bucket and passing <code>fileData.fileUri = "gs://..."</code> alongside a strict JSON <code>responseSchema</code> achieved <strong>100% reconciliation accuracy</strong> with zero local download or Python parser: <strong>Hydrogen</strong> reconciled <code>gs://.xlsx</code> in <code>7.38s</code> for just <strong>$0.00269</strong> and <code>gs://.docx</code> in <code>5.17s</code> for <strong>$0.00443</strong>; <strong>Carbon</strong> reconciled both in <code>31.29s</code> (<code>$0.00621</code>) and <code>8.25s</code> (<code>$0.00990</code>), while Argon returned a crisp fail-fast <code>HTTP 400</code>.</li>
+  <li><strong>15/15 (100%) <code>responseSchema</code> Repeatability + Live Google Search Grounding (Exp 6C — 18 Live Calls):</strong> To prove our Insight #5B recommendation empirically, I ran a 5-repeat Cloud SRE incident classification prompt with a strict enum/integer <code>responseSchema</code> across all three elements. Result: <strong>100.0% valid JSON schema conformance and 100.0% exact core operational decision repeatability (<code>unique_core = 1/5</code>) across Hydrogen (3.52s), Carbon (5.43s), and Argon (4.70s)!</strong> Pairing Gemini 4’s managed sampling with <code>responseSchema</code> makes production workflows rock-solid. Live <strong>Google Search Grounding</strong> (<code>tools: [{"googleSearch": {}}]</code>) also returned <code>HTTP 200</code> across all three elements (Hydrogen issuing 3 queries in 7.1s, Argon 5 queries in 24.9s, and Carbon conducting 10 deep multi-hop search queries in 39.0s).</li>
+  <li><strong>Multi-Turn Function Calling + Cryptographic <code>thoughtSignature</code> &amp; Live BigQuery FinOps SQL (Exp 6D — 6 Live Tool Calls + Live BigQuery Job):</strong> On a 2-turn Cloud Spanner CUD pricing loop (<code>get_spanner_cud_rate</code> → <code>$630.72/mo</code>), all three models emitted cryptographic <strong><code>thoughtSignature</code></strong> payloads (<code>532 bytes</code> on Hydrogen, <code>128 bytes</code> on Argon &amp; Carbon) and achieved <strong>100% exact numeric accuracy</strong> when Turn 1 was echoed verbatim (<code>4.66s</code> on Hydrogen, <code>8.59s</code> on Argon, <code>24.15s</code> on Carbon). Finally, loading all 88 evaluation rows into a live <strong>Google Cloud BigQuery</strong> table (<code>4.08s</code>) and executing our SQL view <code>v_pareto_cost_per_correct_answer</code> (<code>2.18s</code>) verified <code>gemini-4-hydrogen:LOW</code> at <strong>$0.0126 per correct answer @ 100% accuracy</strong> directly inside BigQuery.</li>
+</ol>
+
+<h2>Putting It All Together: A Production-Realistic Google Cloud Reference Repository</h2>
+
+<p>Rather than leaving these findings as a standalone script, every guardrail, regional resolver, OOXML validator, and FinOps query is packaged into a realistic, deployable, open-source Google Cloud repository (<a href="https://github.com/aniketagrawal2012/google-cloud-gemini4-periodic-lab"><code>google-cloud-gemini4-periodic-lab</code></a>, Apache-2.0, <strong>13/13 pytest passing + GitHub Actions CI</strong>) structured for real enterprise adoption:</p>
+
+<ul>
+  <li><strong>Core Router, Regional Resolver &amp; OOXML Guard (<code>app/periodic_router.py</code>):</strong> Pareto element selection, pre-flight contract validation, 95% cache prefix hygiene linter, official <code>global</code>/<code>us</code>/<code>eu</code>/<code>europe-west2</code>/<code>asia-southeast1</code> endpoint resolution, <code>validate_ooxml_bytes()</code> ZIP inspector, and verbatim <code>thoughtSignature</code> turn continuation helper.</li>
+  <li><strong>FastAPI Cloud Run Router Gateway (<code>app/service.py</code> + <code>Dockerfile</code> + <code>deploy/cloudrun.yaml</code>):</strong> Production non-root container exposing <code>/healthz</code>, <code>/v1/route</code>, <code>/v1/audit/cache-prefix</code>, <code>/v1/audit/ooxml</code>, and <code>/v1/generate</code> — injecting <code>X-Gemini4-Element</code>, <code>X-Gemini4-Thinking-Level</code>, <code>X-Gemini4-Endpoint-Region</code>, and <code>X-Estimated-Cost-USD</code> headers with <code>timeoutSeconds: 360</code> pre-configured for long-horizon buffered streams.</li>
+  <li><strong>Google Cloud REST, GCS &amp; BigQuery Client (<code>app/gcp_client.py</code>) + ADK Callback (<code>app/adk_agent.py</code>):</strong> Drop-in <a href="https://adk.dev/">Google Agent Development Kit (ADK)</a> <code>before_model_callback</code> and <code>gs://</code> Office attachment builder emitting structured Cloud Logging &amp; BigQuery telemetry ready for <a href="https://docs.cloud.google.com/gemini-enterprise-agent-platform/scale">Agent Engine</a>.</li>
+  <li><strong>Live-Verified BigQuery FinOps DDL (<code>infra/bigquery_telemetry.sql</code>):</strong> Partitioned &amp; clustered BigQuery telemetry schema plus three ready-to-deploy SQL views (<code>v_pareto_cost_per_correct_answer</code>, <code>v_implicit_cache_roi_by_element</code>, <code>v_regional_residency_sla</code>).</li>
+</ul>
 
 <figure>
   <img src="https://raw.githubusercontent.com/aniketagrawal2012/google-cloud-gemini4-periodic-lab/main/docs/figures/fig7_periodic_router_architecture.gif" alt="Animated Production Architecture of the Empirically Calibrated Gemini 4 Periodic Element Router on Google Cloud" />
-  <figcaption>Figure 7: Production reference architecture for routing across Gemini 4 Hydrogen, Carbon, and Argon — combining contract-aware pre-flight validation and 95% cache prefix hygiene with workload-matched element lanes.</figcaption>
+  <figcaption>Figure 7: Production reference architecture for routing across Gemini 4 Hydrogen, Carbon, and Argon — combining Cloud Run FastAPI pre-flight guardrails, 95% cache prefix hygiene, official regional residency resolution, and BigQuery FinOps observability.</figcaption>
 </figure>
 
 <pre><code>from app.periodic_router import (
-    TaskProfile,
-    audit_implicit_cache_prefix,
-    select_periodic_route,
-    validate_gemini4_request,
+    TaskProfile, audit_implicit_cache_prefix,
+    select_periodic_route, validate_gemini4_request,
 )
 # 1. Pre-flight contract check + thinking-level guidance
 guard = validate_gemini4_request(
-    "gemini-4-carbon",
-    thinking_level="LOW",
-    temperature=0.0,
+    "gemini-4-carbon", thinking_level="LOW", temperature=0.0,
 )
-# guard.warnings -> ["Managed sampling note: Gemini 4 self-calibrates...",
-#                    "Direct-answer LOW mode note: use MEDIUM/HIGH for multi-step..."]
-# 2. Protect Gemini 4's 95% implicit cache with static byte-0 prefix hygiene
-cache_audit = audit_implicit_cache_prefix(system_instruction_text)
-assert cache_audit["cache_eligible"], f"Move dynamic headers to user turn: {cache_audit}"
+# 2. Protect Gemini 4's 95% implicit cache from byte-0 drift
+audit = audit_implicit_cache_prefix(system_instruction_text)
+assert audit["cache_eligible"], f"Fix prefix: {audit}"
 # 3. Empirically calibrated workload-to-element routing
 route = select_periodic_route(
     TaskProfile(
         complexity="hard_reasoning",
-        budget_priority="balanced",      # -> gemini-4-carbon:MEDIUM ($0.248 list / $0.124 promo)
-        has_office_attachment=True,      # Routes Office MIME to Hydrogen/Carbon automatically
-        requires_single_region_ga=False, # Set True to route to Argon (12-mo GA + single-region)
+        budget_priority="balanced",     # -&gt; Carbon:MEDIUM ($0.248)
+        has_office_attachment=True,     # -&gt; Hydrogen/Carbon MIME lane
+        requires_single_region_ga=False,# True -&gt; Argon europe-west2
     )
 )
-print(route.model, route.thinking_level, "escalation:", route.escalation_ladder)
-# Output: gemini-4-carbon MEDIUM escalation: [('gemini-4-carbon', 'HIGH')]</code></pre>
+print(route.model, route.thinking_level, route.escalation_ladder)
+# gemini-4-carbon MEDIUM [('gemini-4-carbon', 'HIGH')]</code></pre>
 
 <h2>Choosing Your Element at a Glance</h2>
 
 <ul>
   <li><strong>Choose Gemini 4 Hydrogen (<code>gemini-4-hydrogen</code>)</strong> for interactive speed (<code>154–166 tok/s</code>), active reasoning even at <code>LOW</code> (<code>8/8</code> for <code>$0.101</code>), 65K non-streaming outputs, the <code>$0.075/1M</code> 95% implicit cache tier, rapid binary <code>.xlsx</code>/<code>.docx</code> extraction, and asynchronous <code>XHIGH</code> deep verification.</li>
   <li><strong>Choose Gemini 4 Carbon (<code>gemini-4-carbon</code>)</strong> for frontier agentic synthesis, 100% default-<code>MEDIUM</code> reasoning efficiency (<code>$0.248</code> list / <code>$0.124</code> Nov-2026 promo), native binary Office multi-document reasoning, and <code>HIGH</code>-tier headroom for complex research workflows.</li>
-  <li><strong>Choose Gemini 4 Argon (<code>gemini-4-argon</code>)</strong> for regulated enterprise production demanding single-region data residency (<code>us-central1</code>, <code>europe-west4</code>, etc.), a 12-month GA stability commitment (October 2027+), ultra-fast <code>5.0s</code> direct-answer <code>LOW</code> inference, and 100% multi-step accuracy on <code>HIGH</code>.</li>
+  <li><strong>Choose Gemini 4 Argon (<code>gemini-4-argon</code>)</strong> for regulated enterprise production demanding single-region data residency (<code>europe-west2</code> London or <code>asia-southeast1</code> Singapore, alongside CMEK/VPC-SC/AXT), a 12-month GA stability commitment (October 2027+), ultra-fast <code>5.0s</code> direct-answer <code>LOW</code> inference, and 100% multi-step accuracy on <code>HIGH</code>.</li>
 </ul>
 
 <h2>The 5-Rule Cheat Sheet for Your Next Gemini 4 Architecture Review</h2>
@@ -263,20 +281,20 @@ print(route.model, route.thinking_level, "escalation:", route.escalation_ladder)
   <li><strong>Start high-velocity &amp; interactive workloads on <code>gemini-4-hydrogen:LOW</code> (or <code>HIGH</code> for complex tool chains):</strong> Hydrogen keeps active reasoning engaged even on <code>LOW</code> (1,549 avg thoughts, 100% suite score, 154–166 tok/s, $0.101), unlocks 65K non-streaming outputs, and leads on native Office extraction speed.</li>
   <li><strong>Use <code>LOW</code> on Argon and Carbon for fast direct-answer tasks — and <code>MEDIUM</code>/<code>HIGH</code> for multi-step reasoning:</strong> Argon and Carbon treat <code>LOW</code> as a crisp 0-thought direct-answer mode (5.0s on Argon!), while their default <code>MEDIUM</code> and <code>HIGH</code> tiers deliver full multi-step reasoning precision.</li>
   <li><strong>Choose <code>gemini-4-carbon:MEDIUM</code> as your primary frontier reasoning lane before escalating to <code>HIGH</code> or <code>Hydrogen:XHIGH</code>:</strong> Carbon’s default <code>MEDIUM</code> achieved 100% (8/8) with lean reasoning budgets ($0.248 list / $0.124 Nov-2026 promo — 2.9×–5.9× more economical than <code>Hydrogen:XHIGH</code>).</li>
-  <li><strong>Standardize on <code>gemini-4-argon:MEDIUM/HIGH</code> whenever single-region data residency or 12-month GA stability (Oct 2027+) is mandatory:</strong> Argon is the enterprise compliance anchor — just route binary <code>.xlsx</code>/<code>.docx</code> payloads to Hydrogen or Carbon.</li>
+  <li><strong>Standardize on <code>gemini-4-argon:MEDIUM/HIGH</code> whenever single-region data residency (<code>europe-west2</code> / <code>asia-southeast1</code>) or 12-month GA stability (Oct 2027+) is mandatory:</strong> Argon is the enterprise compliance anchor (while <code>us</code>/<code>eu</code> multi-regions run across all three elements via unified <code>aiplatform.googleapis.com</code>) — just route binary <code>.xlsx</code>/<code>.docx</code> payloads to Hydrogen or Carbon.</li>
   <li><strong>Enforce prefix hygiene in CI &amp; pair deep-horizon jobs with <code>background=True</code>:</strong> Keep static prefixes invariant from byte 0 above 4,096 tokens to unlock the 95% implicit cache ($0.075/1M on Hydrogen), and run <code>XHIGH</code> / <code>&gt;32K</code> completions asynchronously via the Interactions API to stay smoothly aligned with the Nov 13, 2026 long-output billing policy.</li>
 </ol>
 
 <h2>Reproduce Every Number &amp; Join the Conversation</h2>
 
-<p>Every script, prompt, deterministic grader, raw 188-call JSON telemetry log (<code>results/live_benchmark_results.json</code>), chart generator, and unit-tested Python router is 100% open-source under Apache-2.0:</p>
+<p>Every script, prompt, deterministic grader, raw 255-call JSON telemetry log (<code>results/live_benchmark_results.json</code> &amp; <code>results/gcp_platform_experiments.json</code>), FastAPI Cloud Run Gateway, ADK callback, BigQuery FinOps SQL DDL, chart generator, and 13-test pytest suite is 100% open-source under Apache-2.0:</p>
 
 <ul>
   <li><strong>GitHub Companion Lab (Apache-2.0):</strong> <a href="https://github.com/aniketagrawal2012/google-cloud-gemini4-periodic-lab">aniketagrawal2012/google-cloud-gemini4-periodic-lab</a></li>
   <li><strong>Related Deep Dive (Control Theory for Autonomous Google Cloud Agents):</strong> <a href="https://discuss.google.dev/t/412908">Lyapunov Stability, ADK 2.2 Workflow DAGs, Kingman Queueing &amp; Cloud Spanner TrueTime on Google Cloud Community</a></li>
 </ul>
 
-<p><strong>Which Gemini 4 element fits your next production workload — Hydrogen’s 165 tok/s velocity and 95% cache economics, Carbon’s default-<code>MEDIUM</code> frontier precision, or Argon’s 12-month single-region GA guarantee?</strong> Drop a comment below with the architectures you are building on Gemini 4, and if these 188 live experiments saved your team days of benchmarking, consider giving this post a few claps so other cloud architects can discover it too!</p>
+<p><strong>Which Gemini 4 element fits your next production workload — Hydrogen’s 165 tok/s velocity and 95% cache economics, Carbon’s default-<code>MEDIUM</code> frontier precision, or Argon’s 12-month GA and <code>europe-west2</code>/<code>asia-southeast1</code> single-region residency?</strong> Drop a comment below with the architectures you are building on Gemini 4, and if these 255 live Google Cloud experiments and the Cloud Run/ADK/BigQuery reference repo saved your team days of benchmarking, consider giving this post a few claps so other cloud architects can discover it too!</p>
 
 <hr />
 
