@@ -16,7 +16,13 @@ COPY pyproject.toml README.md ./
 COPY app ./app
 
 RUN pip install --no-cache-dir --upgrade pip \
-    && pip install --no-cache-dir "fastapi>=0.115.0" "uvicorn[standard]>=0.32.0" "pydantic>=2.7.0" "google-auth>=2.35.0"
+    && pip install --no-cache-dir \
+       "fastapi>=0.115.0" \
+       "uvicorn[standard]>=0.32.0" \
+       "pydantic>=2.7.0" \
+       "google-auth>=2.35.0" \
+       "requests>=2.32.0" \
+       "google-cloud-bigquery>=3.25.0"
 
 USER appuser
 

@@ -3,6 +3,11 @@
 # Licensed under the Apache License, Version 2.0
 #
 # One-command deployment of the Gemini 4 Periodic Element Router to Google Cloud Run.
+# Least-privilege IAM roles recommended on the Cloud Run runtime service account:
+#   - roles/aiplatform.user        (Gemini 4 generateContent / streamGenerateContent)
+#   - roles/bigquery.dataEditor    (optional: streaming insert to gemini4_finops.router_telemetry)
+#   - roles/storage.objectViewer   (optional: Cloud Storage gs:// binary Office inputs)
+#
 # Usage:
 #   GOOGLE_CLOUD_PROJECT=your-gcp-project-id REGION=us-central1 ./deploy/deploy_cloud_run.sh
 
@@ -24,5 +29,7 @@ gcloud run deploy "${SERVICE_NAME}" \
   --set-env-vars="GOOGLE_CLOUD_PROJECT=${PROJECT_ID}" \
   --no-allow-unauthenticated
 
-echo "Deployment complete. Test with:"
-echo "  gcloud run services proxy ${SERVICE_NAME} --region=${REGION} --project=${PROJECT_ID}"
+SVC_URL="$(gcloud run services describe "${SERVICE_NAME}" --project="${PROJECT_ID}" --region="${REGION}" --format='value(status.url)')"
+echo "Deployment complete: ${SVC_URL}"
+echo "Verify live health check (use /health on Cloud Run since Google Frontend reserves /healthz):"
+echo "  curl -sS -H \"Authorization: Bearer \$(gcloud auth print-identity-token)\" \"${SVC_URL}/health\""

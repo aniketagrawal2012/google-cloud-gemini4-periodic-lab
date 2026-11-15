@@ -16,11 +16,14 @@
 from __future__ import annotations
 
 import base64
+import logging
 import os
 from typing import Any, Literal
 
 from fastapi import FastAPI, HTTPException, Response
 from pydantic import BaseModel, Field
+
+logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(name)s %(message)s")
 
 from app.gcp_client import PeriodicGCPClient
 from app.periodic_router import (
@@ -75,6 +78,8 @@ class GenerateRequest(BaseModel):
     enable_google_search: bool = False
 
 
+@app.get("/")
+@app.get("/health")
 @app.get("/healthz")
 def healthz() -> dict[str, Any]:
     return {

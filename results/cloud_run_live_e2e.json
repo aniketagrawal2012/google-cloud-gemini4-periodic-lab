@@ -1,0 +1,182 @@
+{
+  "timestamp_utc": "2026-11-15T10:57:30.996814+00:00",
+  "deployment": {
+    "platform": "Google Cloud Run (gen2, us-central1, timeoutSeconds=360, non-root Python 3.12)",
+    "service_name": "gemini4-periodic-router",
+    "revision": "gemini4-periodic-router-00002-jv9",
+    "gfe_health_finding": "Google Frontend intercepts /healthz on Cloud Run; exposed /health + /healthz alias for 100% Cloud Run & K8s portability."
+  },
+  "live_cloud_run_checks": {
+    "health": {
+      "http_status": 200,
+      "e2e_latency_s": 0.489,
+      "headers": {},
+      "body": {
+        "status": "ok",
+        "service": "gemini4-periodic-router",
+        "elements": {
+          "gemini-4-hydrogen": {
+            "element": "Hydrogen",
+            "default_thinking": "HIGH",
+            "single_region_ga": false,
+            "native_office_mime": true
+          },
+          "gemini-4-argon": {
+            "element": "Argon",
+            "default_thinking": "MEDIUM",
+            "single_region_ga": true,
+            "native_office_mime": false
+          },
+          "gemini-4-carbon": {
+            "element": "Carbon",
+            "default_thinking": "MEDIUM",
+            "single_region_ga": false,
+            "native_office_mime": true
+          }
+        }
+      }
+    },
+    "route_hydrogen_cost_first": {
+      "http_status": 200,
+      "e2e_latency_s": 0.33,
+      "headers": {
+        "x-gemini4-element": "gemini-4-hydrogen",
+        "x-gemini4-thinking-level": "LOW",
+        "x-gemini4-endpoint-region": "global"
+      },
+      "body": {
+        "decision": {
+          "model": "gemini-4-hydrogen",
+          "thinking_level": "LOW",
+          "escalation_ladder": [
+            [
+              "gemini-4-hydrogen",
+              "HIGH"
+            ],
+            [
+              "gemini-4-carbon",
+              "MEDIUM"
+            ]
+          ],
+          "rationale": "Hydrogen LOW retains active CoT (~1,549 thought tokens), achieves 154+ tok/s, and costs 62.5% less than Carbon/Argon."
+        },
+        "contract_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": []
+        },
+        "endpoint": {
+          "model": "gemini-4-hydrogen",
+          "requested_region": "global",
+          "effective_region": "global",
+          "endpoint_url": "https://aiplatform.googleapis.com/v1beta1/projects/demo-gcp-project/locations/global/publishers/google/models/gemini-4-hydrogen:streamGenerateContent?alt=sse",
+          "single_region_enforced": false,
+          "note": "Using unified Google Cloud hostname `aiplatform.googleapis.com` with `global` global dynamic routing for gemini-4-hydrogen."
+        }
+      }
+    },
+    "route_carbon_us_office": {
+      "http_status": 200,
+      "e2e_latency_s": 0.325,
+      "headers": {
+        "x-gemini4-element": "gemini-4-carbon",
+        "x-gemini4-thinking-level": "MEDIUM",
+        "x-gemini4-endpoint-region": "us"
+      },
+      "body": {
+        "decision": {
+          "model": "gemini-4-carbon",
+          "thinking_level": "MEDIUM",
+          "escalation_ladder": [
+            [
+              "gemini-4-carbon",
+              "HIGH"
+            ]
+          ],
+          "rationale": "Carbon MEDIUM is the frontier Pareto sweet spot: 100% accuracy at 5.6x lower cost than Carbon HIGH and 2.9x lower cost than Hydrogen XHIGH."
+        },
+        "contract_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": []
+        },
+        "endpoint": {
+          "model": "gemini-4-carbon",
+          "requested_region": "us",
+          "effective_region": "us",
+          "endpoint_url": "https://aiplatform.googleapis.com/v1beta1/projects/demo-gcp-project/locations/us/publishers/google/models/gemini-4-carbon:streamGenerateContent?alt=sse",
+          "single_region_enforced": false,
+          "note": "Using unified Google Cloud hostname `aiplatform.googleapis.com` with `us` multi-region residency for gemini-4-carbon."
+        }
+      }
+    },
+    "route_argon_london_single_region": {
+      "http_status": 200,
+      "e2e_latency_s": 0.343,
+      "headers": {
+        "x-gemini4-element": "gemini-4-argon",
+        "x-gemini4-thinking-level": "MEDIUM",
+        "x-gemini4-endpoint-region": "europe-west2"
+      },
+      "body": {
+        "decision": {
+          "model": "gemini-4-argon",
+          "thinking_level": "MEDIUM",
+          "escalation_ladder": [
+            [
+              "gemini-4-argon",
+              "HIGH"
+            ]
+          ],
+          "rationale": "Single-region GA residency & 12-month lifecycle commitment satisfied by Gemini 4 Argon."
+        },
+        "contract_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": []
+        },
+        "endpoint": {
+          "model": "gemini-4-argon",
+          "requested_region": "europe-west2",
+          "effective_region": "europe-west2",
+          "endpoint_url": "https://europe-west2-aiplatform.googleapis.com/v1beta1/projects/demo-gcp-project/locations/europe-west2/publishers/google/models/gemini-4-argon:streamGenerateContent?alt=sse",
+          "single_region_enforced": true,
+          "note": "Single-region data residency honored natively on `europe-west2` via Gemini 4 Argon."
+        }
+      }
+    },
+    "audit_cache_prefix_violation": {
+      "http_status": 200,
+      "e2e_latency_s": 0.504,
+      "headers": {},
+      "body": {
+        "approx_prefix_tokens": 4861,
+        "meets_4096_cliff": true,
+        "dynamic_header_violations": [
+          "\\b20\\d{2}-\\d{2}-\\d{2}[T ]\\d{2}:\\d{2}:\\d{2}"
+        ],
+        "cache_eligible": false
+      }
+    },
+    "audit_ooxml_xlsx_valid": {
+      "http_status": 200,
+      "e2e_latency_s": 0.355,
+      "headers": {},
+      "body": {
+        "valid": true,
+        "kind": "xlsx",
+        "present_parts": [
+          "[Content_Types].xml",
+          "_rels/.rels",
+          "xl/workbook.xml",
+          "xl/_rels/workbook.xml.rels",
+          "xl/styles.xml",
+          "xl/sharedStrings.xml",
+          "xl/worksheets/sheet1.xml"
+        ],
+        "missing_required_parts": [],
+        "guidance": "Standards-compliant OOXML package ready for native Gemini 4 Hydrogen/Carbon ingestion."
+      }
+    }
+  }
+}

@@ -126,11 +126,12 @@ def test_build_gcs_office_part_infers_mime_and_rejects_http() -> None:
 
 
 def test_fastapi_gateway_healthz_and_route_headers() -> None:
-    r_health = client.get("/healthz")
-    assert r_health.status_code == 200
-    body = r_health.json()
-    assert body["status"] == "ok"
-    assert set(body["elements"].keys()) == {"gemini-4-hydrogen", "gemini-4-carbon", "gemini-4-argon"}
+    for probe_path in ("/", "/health", "/healthz"):
+        r_health = client.get(probe_path)
+        assert r_health.status_code == 200
+        body = r_health.json()
+        assert body["status"] == "ok"
+        assert set(body["elements"].keys()) == {"gemini-4-hydrogen", "gemini-4-carbon", "gemini-4-argon"}
 
     # Regulated single-region UK workload -> Argon on europe-west2
     r_uk = client.post(
@@ -194,3 +195,26 @@ def test_adk_before_model_callback_dynamic_lanes() -> None:
     assert res_ga["model"] == "gemini-4-argon"
     assert res_ga["thinking_level"] == "HIGH"
     assert res_ga["contract_valid"] is True
+
+
+def test_bigquery_telemetry_row_schema_key_mapping() -> None:
+    from app.gcp_client import PeriodicGCPClient, TelemetryEvent
+
+    ev = TelemetryEvent(
+        model="gemini-4-hydrogen",
+        thinking_level="LOW",
+        endpoint_region="global",
+        http_status=200,
+        latency_s=11.43,
+        prompt_tokens=162,
+        cached_tokens=0,
+        thoughts_tokens=1549,
+        output_tokens=120,
+        estimated_list_cost_usd=0.0126,
+    )
+    gcp = PeriodicGCPClient(project_id="demo-gcp-proj")
+    gcp._emit_telemetry(ev)
+    dumped = ev.model_dump()
+    assert dumped["model"] == "gemini-4-hydrogen"
+    assert dumped["estimated_list_cost_usd"] == 0.0126
+    assert "event_timestamp" in dumped

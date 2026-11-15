@@ -245,7 +245,9 @@ class PeriodicGCPClient:
             from google.cloud import bigquery
 
             bq = bigquery.Client(project=self.project_id)
-            errors = bq.insert_rows_json(self.bq_telemetry_table, [event.model_dump()])
+            bq_row = event.model_dump()
+            bq_row["list_cost_usd"] = bq_row.pop("estimated_list_cost_usd")
+            errors = bq.insert_rows_json(self.bq_telemetry_table, [bq_row])
             if errors:
                 logger.warning("BigQuery telemetry insert errors: %s", errors)
         except Exception as exc:

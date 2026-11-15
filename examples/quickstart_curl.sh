@@ -9,7 +9,7 @@ set -euo pipefail
 BASE_URL="${BASE_URL:-http://127.0.0.1:8080}"
 
 echo "1. Health & Element Capabilities:"
-curl -s "${BASE_URL}/healthz" | python3 -m json.tool
+curl -s "${BASE_URL}/health" | python3 -m json.tool
 
 echo -e "\n2. Plan Regulated UK Single-Region GA Route (Argon on europe-west2):"
 curl -s -i -X POST "${BASE_URL}/v1/route" \

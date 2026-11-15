@@ -187,7 +187,7 @@ def build_fig1_hero(data: dict[str, Any]) -> None:
         )
         ax.text(
             6.0, 5.58,
-            f"{total_calls} Live Google Cloud API Calls (Global · US/EU · Single-Region · GCS · BigQuery)  ·  H vs C vs Ar",
+            f"{total_calls}+ Live Google Cloud Calls (Cloud Run · BigQuery · GCS · 5 Regions)  ·  H vs C vs Ar",
             ha="center", va="center", fontsize=10.0, color=SUBTXT,
         )
 
@@ -1081,7 +1081,7 @@ def build_fig7_router_gif() -> None:
         # Bottom summary strip
         ax.text(
             6.1, 0.34,
-            "Open-Source Cloud Run Gateway + ADK Callback + BigQuery DDL (13/13 pytest passing) · Google Cloud Gemini 4 (Nov 2026)",
+            "Live on Google Cloud Run (gen2) + ADK Callback + BigQuery FinOps DDL (14/14 pytest passing) · Nov 2026",
             ha="center", va="center", fontsize=8.3, color=MUTED,
         )
         frames.append(fig_to_pil(fig, dpi=100))
