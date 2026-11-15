@@ -453,7 +453,7 @@ def build_fig2_pareto_heatmap(data: dict[str, Any]) -> None:
 
     fig.text(
         0.5, 0.025,
-        "Live Google Cloud Gemini Enterprise Agent Platform (global, v1beta1) · Each cell shows exact-match verdict + billed thinking tokens (`t` = raw, `k` = thousands).",
+        "Live Google Cloud Gemini Enterprise Agent Platform (global, v1beta1) · Each cell shows exact-match verdict + billed thinking tokens (t = raw, k = thousands).",
         ha="center", fontsize=8.4, color=MUTED,
     )
     out_path = OUT_DIR / "fig2_low_cliff_and_pareto_frontier.png"
@@ -804,8 +804,9 @@ def build_fig5_cache_cliff(data: dict[str, Any]) -> None:
     ax2.plot(turns, c_h_95,  color=C_OK, lw=3.0, label=f"Hydrogen 95% Cache (${c_h_95[-1]:.2f})")
 
     ax2.fill_between(turns, c_h_95, c_h_unc, color=C_OK, alpha=0.10)
+    pct_saved = 100.0 * (c_h_unc[-1] - c_h_95[-1]) / c_h_unc[-1]
     ax2.annotate(
-        f"Hydrogen 95% Cache\nsaves ${c_h_unc[-1] - c_h_95[-1]:.2f} (-81.9%)\nvs Uncached!",
+        f"Hydrogen 95% Cache\nsaves ${c_h_unc[-1] - c_h_95[-1]:.2f} (-{pct_saved:.1f}%)\nvs Uncached!",
         xy=(820, c_h_95[163]), xytext=(520, 95),
         arrowprops=dict(arrowstyle="->", color=C_OK, lw=1.5),
         fontsize=8.4, fontweight="bold", color="#A7F3D0", ha="center",

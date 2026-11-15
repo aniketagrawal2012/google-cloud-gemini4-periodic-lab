@@ -136,4 +136,4 @@ make figures
 
 **Aniket Agrawal** — [LinkedIn](https://www.linkedin.com/in/aniket-agrawal-a18990266/) · [Google Cloud Community](https://discuss.google.dev/u/aniketagrawal) · [Medium](https://medium.com/@aniketagrawal_14703) · [GitHub](https://github.com/aniketagrawal2012)
 
-*Licensed under the [Apache License 2.0](LICENSE).*
+*All benchmarks and Apache-2.0 reference samples are independent engineering measurements on public Google Cloud APIs and are not an officially supported Google product. Licensed under the [Apache License 2.0](LICENSE).*
