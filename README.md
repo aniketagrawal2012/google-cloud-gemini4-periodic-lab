@@ -1,4 +1,4 @@
-# Production Gemini 4 Architecture: Routing Hydrogen, Carbon & Argon Across 255+ Live Google Cloud Calls
+# The Periodic Table of Gemini 4: Routing Hydrogen, Carbon & Argon Across 255+ Live Google Cloud Calls
 
 [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](LICENSE)
 [![Google Cloud](https://img.shields.io/badge/Google_Cloud-Gemini_4_(H%20%7C%20C%20%7C%20Ar)-4285F4)](https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/start/get-started-with-gemini-4)
