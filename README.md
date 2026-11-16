@@ -1,4 +1,4 @@
-# The Periodic Table of Gemini 4: 255+ Live Google Cloud Experiments & Production Router Reference Lab
+# Production Gemini 4 Architecture: Routing Hydrogen, Carbon & Argon Across 255+ Live Google Cloud Calls
 
 [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](LICENSE)
 [![Google Cloud](https://img.shields.io/badge/Google_Cloud-Gemini_4_(H%20%7C%20C%20%7C%20Ar)-4285F4)](https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/start/get-started-with-gemini-4)
@@ -16,7 +16,7 @@
 
 ---
 
-## 8 Surprising Findings from 255+ Live Google Cloud Calls
+## 8 Production Patterns from 255+ Live Google Cloud Calls
 
 All raw wire telemetry is published in [`results/live_benchmark_results.json`](results/live_benchmark_results.json) (188 core calls), [`results/gcp_platform_experiments.json`](results/gcp_platform_experiments.json) (67 GCP platform integration calls), and [`results/cloud_run_live_e2e.json`](results/cloud_run_live_e2e.json) (6 live authenticated Cloud Run gen2 endpoint checks). **Every single Gemini 4 element achieved 100% (8/8) on our deterministic multi-step reasoning suite** in its intended reasoning tier and **100% (15/15) on strict `responseSchema` operational repeatability**.
 
