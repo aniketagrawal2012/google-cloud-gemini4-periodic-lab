@@ -16,10 +16,10 @@
 
 <figure>
   <img src="https://raw.githubusercontent.com/aniketagrawal2012/google-cloud-gemini4-periodic-lab/main/docs/figures/fig1_periodic_table_hero.gif" alt="Animated Periodic Table of Gemini 4 comparing Hydrogen, Carbon, and Argon on Google Cloud" />
-  <figcaption>Figure 1: The Periodic Table of Gemini 4 on Google Cloud’s Gemini Enterprise Agent Platform — live pricing, thinking profiles, and production strengths across Hydrogen, Carbon, and Argon.</figcaption>
+  <figcaption>Figure 1: The Periodic Table of Gemini 4 on Google Cloud’s Gemini platform — live pricing, thinking profiles, and production strengths across Hydrogen, Carbon, and Argon.</figcaption>
 </figure>
 
-<p>Open Model Garden inside Google Cloud’s <strong>Gemini Enterprise Agent Platform</strong> and you won’t see “small, medium, and large” — you’ll see a true <strong>Periodic Table of Gemini 4</strong>. Across <a href="https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/gemini/4-argon"><strong>Gemini 4 Argon</strong></a> (<code>gemini-4-argon</code>, Oct 13, 2026: 12-month GA lifecycle and single-region data residency in <code>europe-west2</code> and <code>asia-southeast1</code>), <a href="https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/gemini/4-carbon"><strong>Gemini 4 Carbon</strong></a> (<code>gemini-4-carbon</code>, Nov 10, 2026: frontier deep reasoning and native Office ingestion), and <a href="https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/gemini/4-hydrogen"><strong>Gemini 4 Hydrogen</strong></a> (<code>gemini-4-hydrogen</code>, Nov 12, 2026: 165 tok/s speed, <code>XHIGH</code> deep verification, 65K output, native Office MIME, and 95% implicit caching at 62.5% lower list price), each element anchors a distinct enterprise workload lane.</p>
+<p>Open Model Garden inside Google Cloud’s <strong>Gemini platform</strong> (documented under <em>Gemini Enterprise Agent Platform</em>) and you won’t see “small, medium, and large” — you’ll see a true <strong>Periodic Table of Gemini 4</strong>. Across <a href="https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/gemini/4-argon"><strong>Gemini 4 Argon</strong></a> (<code>gemini-4-argon</code>, Oct 13, 2026: 12-month GA lifecycle and single-region data residency in <code>europe-west2</code> and <code>asia-southeast1</code>), <a href="https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/gemini/4-carbon"><strong>Gemini 4 Carbon</strong></a> (<code>gemini-4-carbon</code>, Nov 10, 2026: frontier deep reasoning and native Office ingestion), and <a href="https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/gemini/4-hydrogen"><strong>Gemini 4 Hydrogen</strong></a> (<code>gemini-4-hydrogen</code>, Nov 12, 2026: 165 tok/s speed, <code>XHIGH</code> deep verification, 65K output, native Office MIME, and 95% implicit caching at 62.5% lower list price), each element anchors a distinct enterprise workload lane.</p>
 
 <blockquote>Routing each request to the right element and thinking depth delivered a 13.7× cost spread ($0.1006 on Hydrogen LOW vs. $1.3806 on Carbon HIGH) while achieving 100% accuracy across 8 deterministic tasks and 15/15 responseSchema conformance — live on Cloud Run, Cloud Storage, and BigQuery.</blockquote>
 
@@ -62,7 +62,7 @@ Argon      Oct 13 (12-mo GA)  $4.00/$0.200/$20.0  LO/MD*/HI       32K
 
 <h2>1. Workload-Matched Thinking Depth &amp; the 13.7× Pareto Frontier</h2>
 
-<p>To calibrate how <code>thinkingLevel</code> impacts accuracy, latency, and spend (<strong>Experiment 2: 88 live calls</strong>), I evaluated deterministic Python-graded tasks spanning Bayesian inference (<code>T1</code>), Sprague-Grundy game theory (<code>T2</code>), Python <code>asyncio</code> + Cloud Spanner concurrency review (<code>T3</code>), BigQuery temporal deduplication (<code>T4</code>), a 6-service multi-region placement CSP (<code>T5</code>), a 16-step bitwise state machine (<code>T6</code>), ERP prompt-injection defense (<code>T7</code>), and a FinOps FX/CUD waterfall (<code>T8</code>).</p>
+<p>To calibrate how <code>thinkingLevel</code> impacts accuracy, latency, and spend (<strong>Experiment 2: 88 live calls</strong>), I evaluated deterministic Python-graded tasks spanning Bayesian inference (<code>T1</code>), Sprague-Grundy game theory (<code>T2</code>), Python <code>asyncio</code> + Spanner concurrency review (<code>T3</code>), BigQuery temporal deduplication (<code>T4</code>), a 6-service multi-region placement CSP (<code>T5</code>), a 16-step bitwise state machine (<code>T6</code>), ERP prompt-injection defense (<code>T7</code>), and a FinOps FX/CUD waterfall (<code>T8</code>).</p>
 
 <figure>
   <img src="https://raw.githubusercontent.com/aniketagrawal2012/google-cloud-gemini4-periodic-lab/main/docs/figures/fig2_low_cliff_and_pareto_frontier.png" alt="Cost-Latency Pareto Frontier and Verified 100% Production Matrix across Gemini 4 tiers" />
@@ -97,7 +97,7 @@ Argon      Oct 13 (12-mo GA)  $4.00/$0.200/$20.0  LO/MD*/HI       32K
 
 <h2>2. Streaming Velocity &amp; Async Cloud Run / Interactions Patterns</h2>
 
-<p>Streaming the exact same Cloud Spanner TrueTime rate-limiter synthesis prompt via <code>streamGenerateContent?alt=sse</code> with <code>includeThoughts=true</code> (<strong>Experiment 3: 10 live SSE streams</strong>) revealed clear latency design rules:</p>
+<p>Streaming the exact same Spanner TrueTime rate-limiter synthesis prompt via <code>streamGenerateContent?alt=sse</code> with <code>includeThoughts=true</code> (<strong>Experiment 3: 10 live SSE streams</strong>) revealed clear latency design rules:</p>
 
 <figure>
   <img src="https://raw.githubusercontent.com/aniketagrawal2012/google-cloud-gemini4-periodic-lab/main/docs/figures/fig4_streaming_silent_horizon.gif" alt="Animated SSE replay showing wait, thinking, decode phases and steady decode speed across all 10 Gemini 4 configs" />
@@ -201,7 +201,7 @@ print(route.model, route.thinking_level, route.escalation_ladder)
 <ul>
   <li><strong>GitHub Companion Lab (Apache-2.0):</strong> <a href="https://github.com/aniketagrawal2012/google-cloud-gemini4-periodic-lab">aniketagrawal2012/google-cloud-gemini4-periodic-lab</a></li>
   <li><strong>Companion Production Agent Architectures:</strong> <a href="https://medium.com/google-cloud/why-90-of-ai-agents-fail-in-production-architecting-a-self-healing-multi-agent-system-on-google-f73dfcc08f73">Self-Healing Multi-Agent Systems with ADK 2.2</a> (<a href="https://github.com/aniketagrawal2012/google-cloud-adk-order-to-cash-agent">Order-to-Cash Repo</a>) · <a href="https://github.com/aniketagrawal2012/google-cloud-adk-sre-control-governor">SRE &amp; BigQuery Slot Control Governor</a></li>
-  <li><strong>Related Deep Dive (Control Theory for Google Cloud Agents):</strong> <a href="https://discuss.google.dev/t/412908">Lyapunov Stability, ADK 2.2 Workflow DAGs &amp; Cloud Spanner TrueTime</a></li>
+  <li><strong>Related Deep Dive (Control Theory for Google Cloud Agents):</strong> <a href="https://discuss.google.dev/t/412908">Lyapunov Stability, ADK 2.2 Workflow DAGs &amp; Spanner TrueTime</a></li>
 </ul>
 
 <p><strong>Now your turn to guess the next element on the table:</strong> Today’s live Google Cloud lineup spans <strong>Hydrogen (Z=1)</strong>, <strong>Carbon (Z=6)</strong>, and <strong>Argon (Z=18)</strong>. Looking at the open rows between them, <strong>which element do you predict ships next — Helium (Z=2), Oxygen (Z=8), Neon (Z=10), or Silicon (Z=14) — and which workload lane would it own?</strong> Share your chemical prediction and which Gemini 4 lane you’re deploying first in the comments — and if this Periodic Table field guide saved your team compute cycles, hold down the Clap button (up to 50 claps!) so more Google Cloud builders can discover it.</p>
