@@ -6,7 +6,7 @@
 [![Cloud Run](https://img.shields.io/badge/Cloud_Run_E2E-6%2F6_HTTP_200-4285F4)](results/cloud_run_live_e2e.json)
 [![Tests](https://img.shields.io/badge/Pytest-14%2F14_Passing-10B981)](tests/)
 
-**Empirical benchmarks, a live-deployed Google Cloud Run FastAPI Router Gateway, a Google ADK `before_model_callback`, live-verified BigQuery FinOps SQL views, authentic Google Cloud Console captures, and 10 publication-grade figures (6 PNGs + 4 animated GIFs) across 255+ live Google Cloud calls on Gemini 4 Hydrogen, Carbon, and Argon (November 15, 2026).**
+**Empirical benchmarks, a live-deployed Google Cloud Run FastAPI Router Gateway, an Agent Development Kit (ADK) `before_model_callback`, live-verified BigQuery FinOps SQL views, authentic Google Cloud Console captures, and 10 publication-grade figures (6 PNGs + 4 animated GIFs) across 255+ live Google Cloud calls on Gemini 4 Hydrogen, Carbon, and Argon (November 15, 2026).**
 
 ![Figure 1: The Periodic Table of Gemini 4 on Google Cloud](docs/figures/fig1_periodic_table_hero.gif)
 
@@ -29,7 +29,7 @@ All raw wire telemetry is published in [`results/live_benchmark_results.json`](r
 | **5** | **95% Implicit Durable Cache & 16,384-Token Block Alignment** | Above `4,096` tokens, Hydrogen locked onto **`16,384` cached tokens (`4 x 4,096`, `84.62%`)** and cut per-turn spend **76.6% (`$0.0306 -> $0.0072`)**. Keeping dynamic timestamps out of byte 0 protects the full `$0.075/1M` 95% discount (`-81.3%` over 1,000 turns). |
 | **6** | **Framing Envelope (`+31/+4`) & 100% `responseSchema` Proof** | All three Gemini 4 models apply an exact `+31` input / `+4` output framing envelope vs `gemini-3.8-flash` (`R^2 = 1.0000`) and manage free-text sampling autonomously. Pairing Gemini 4 with strict **`responseSchema`** delivered **`15/15` (`100.0%`) schema validity & `100.0%` exact core decision repeatability** across H, C, and Ar. |
 | **7** | **Native Binary `.xlsx` & `.docx` (Inline & Cloud Storage `gs://`)** | Hydrogen (`$0.00269` via `gs://.xlsx` / `$0.00443` via `gs://.docx`) and Carbon (`$0.00621` / `$0.00990`) passed **`100%`** on raw binary spreadsheets & Word memos directly from **Cloud Storage `gs://` URIs** with zero Python parsers (include `xl/styles.xml` & `xl/sharedStrings.xml`). |
-| **8** | **Multi-Turn `thoughtSignature`, BigQuery Studio & Live Cloud Run** | All 3 models passed **`100%`** on a 2-turn Cloud Spanner CUD tool loop preserving **`thoughtSignature`** (`532B` on Hydrogen, `128B` on Argon/Carbon), returned `HTTP 200` on live **Google Search Grounding**, verified our **BigQuery Studio FinOps SQL** (`5.35 KB` scanned, `$0.0126/correct` on `Hydrogen:LOW`), and deployed live to **Cloud Run gen2 (`rev 00002-jv9`, 6/6 HTTP 200)**. |
+| **8** | **Multi-Turn `thoughtSignature`, BigQuery Studio & Live Cloud Run** | All 3 models passed **`100%`** on a 2-turn Cloud Spanner CUD tool loop preserving **`thoughtSignature`** (`532B` on Hydrogen, `128B` on Argon/Carbon), returned `HTTP 200` on live [**Grounding with Google Search**](https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/grounding/grounding-with-google-search), verified our **BigQuery Studio FinOps SQL** (`5.35 KB` scanned, `$0.0126/correct` on `Hydrogen:LOW`), and deployed live to **Cloud Run gen2 (`rev 00002-jv9`, 6/6 HTTP 200)**. |
 
 ![Figure 8: Live Google Cloud Platform Integration Suite](docs/figures/fig8_gcp_platform_integration.png)
 
@@ -121,14 +121,14 @@ make figures
 
 ---
 
-## Official Google Cloud References (Verified Nov 15, 2026)
+## Official Google Cloud References (Verified Nov 17, 2026)
 
 - [Get Started with Gemini 4 — Gemini Enterprise Agent Platform](https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/start/get-started-with-gemini-4)
 - [Gemini 4 Hydrogen Model Card](https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/gemini/4-hydrogen) & [Developer Guide](https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/guides/gemini-4-hydrogen)
 - [Gemini 4 Carbon Model Card](https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/gemini/4-carbon) & [Developer Guide](https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/guides/gemini-4-carbon)
 - [Gemini 4 Argon Model Card](https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/gemini/4-argon) & [Developer Guide](https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/guides/gemini-4-argon)
-- [Gemini Thinking (`thinking_level`)](https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/thinking) · [Implicit Context Caching](https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/context-cache/context-cache-overview) · [Interactions API](https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/capabilities/interactions)
-- [Google Cloud Model Garden Pricing](https://cloud.google.com/model-garden/pricing) · [Google ADK](https://adk.dev/)
+- [Gemini Thinking (`thinking_level`)](https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/thinking) · [Implicit Context Caching](https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/context-cache/context-cache-overview) · [Interactions API](https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/capabilities/interactions) · [Grounding with Google Search](https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/grounding/grounding-with-google-search)
+- [Agent Platform & Model Garden Pricing](https://cloud.google.com/model-garden/pricing) · [Scale Your Agents (Agent Runtime)](https://docs.cloud.google.com/gemini-enterprise-agent-platform/scale) · [Agent Development Kit (ADK)](https://adk.dev/)
 
 ---
 
