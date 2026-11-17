@@ -121,6 +121,14 @@ make figures
 
 ---
 
+## Companion Production Agent Architectures (By the Same Author)
+
+- **[Why 90% of AI Agents Fail in Production (Google Cloud - Community)](https://medium.com/google-cloud/why-90-of-ai-agents-fail-in-production-architecting-a-self-healing-multi-agent-system-on-google-f73dfcc08f73)** & **[`google-cloud-adk-order-to-cash-agent`](https://github.com/aniketagrawal2012/google-cloud-adk-order-to-cash-agent)** — Self-healing enterprise Order-to-Cash multi-agent reference using **ADK 2.2**, **Agent Runtime**, **Gen AI evaluation service**, **Cloud Spanner**, and **BigQuery**.
+- **[`google-cloud-adk-sre-control-governor`](https://github.com/aniketagrawal2012/google-cloud-adk-sre-control-governor)** — Control-theoretic autonomous Google Cloud SRE & BigQuery slot governor built with ADK 2.2 Graph Workflows, Gemini, Cloud SDP, and Cloud Spanner TrueTime.
+- **[Control Theory for Google Cloud Agents (Google Cloud Community)](https://discuss.google.dev/t/412908)** — Lyapunov stability, circuit breakers, and token FinOps governance in production agent fleets.
+
+---
+
 ## Official Google Cloud References (Verified Nov 17, 2026)
 
 - [Get Started with Gemini 4 — Gemini Enterprise Agent Platform](https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/start/get-started-with-gemini-4)
